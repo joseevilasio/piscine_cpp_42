@@ -1,6 +1,6 @@
-NAME = megaphone
+NAME = awesome_phonebook
 
-SRCS = megaphone.cpp
+SRCS = Contact.cpp PhoneBook.cpp handleContact.cpp handleSearch.cpp utils.cpp main.cpp
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
