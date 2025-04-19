@@ -10,7 +10,8 @@ $(NAME): $(SRCS)
 
 all: $(NAME)
 
-#clean:
+clean:
+	rm -f *.o
 
 fclean:
 	rm -f $(NAME)
