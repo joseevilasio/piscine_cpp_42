@@ -32,3 +32,5 @@
 *.app
 .vscode/settings.json
 module_00/ex01/awesome_phonebook
+module_01/ex00/zombie
+module_00/ex02/account
