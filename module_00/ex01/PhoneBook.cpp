@@ -78,3 +78,6 @@ void	PhoneBook::displayContact(int id)
 	formmattedPrint(_contacts[id].getDarkestSecret(), 0);
 	std::cout << std::endl;
 }
+
+PhoneBook::PhoneBook(void) : _count(0) {};
+PhoneBook::~PhoneBook(void){};

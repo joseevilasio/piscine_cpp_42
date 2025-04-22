@@ -10,7 +10,8 @@ class	PhoneBook
 		Contact	_contacts[MAX];
 		int		_count;
 	public:
-		PhoneBook() : _count(0) {};
+		PhoneBook(void);
+		~PhoneBook(void);
 		void	addContact(const Contact& c);
 		int		getCount();
 		void	displayAll();
