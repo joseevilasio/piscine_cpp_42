@@ -12,7 +12,7 @@ class	Zombie
 		Zombie(std::string name);
 		~Zombie(void);
 		void		announce(void);
+		void		setName(std::string name);
 };
-
 
 #endif //ZOMBIE_HPP
