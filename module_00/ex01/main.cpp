@@ -6,14 +6,10 @@ int	main(void)
 	std::string	command;
 
 	fillList(phonebook); //debug
-	std::cout << "Welcome to the awesome phone book \n";
-	std::cout << "Available commands: \n";
-	std::cout << "[ADD] Save a new contact.\n";
-	std::cout << "[SEARCH] Search by index.\n";
-	std::cout << "[EXIT] Exit the program.\n";
+	std::cout << "Welcome to the awesome phonebook \n";
 	while (true)
 	{
-		std::cout << "> ";
+		prompt();
 		std::getline(std::cin, command);
 		if (command == "ADD")
 			handleContact(phonebook);

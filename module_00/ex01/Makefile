@@ -1,4 +1,4 @@
-NAME = awesome_phonebook
+NAME = awesomePhonebook
 
 SRCS = Contact.cpp PhoneBook.cpp handleContact.cpp handleSearch.cpp utils.cpp main.cpp
 

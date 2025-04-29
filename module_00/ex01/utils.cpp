@@ -14,6 +14,15 @@ std::string	trim(const std::string& str)
 	return (str.substr(start, end - start));
 }
 
+void	prompt(void)
+{
+	std::cout << "Available commands: \n";
+	std::cout << "↳ [ADD] Save a new contact. ";
+	std::cout << " [SEARCH] Search by index. ";
+	std::cout << " [EXIT] Exit the program.  \n";
+	std::cout << "→  ";
+}
+
 void	fillList(PhoneBook& phonebook)
 {
 	//TEST

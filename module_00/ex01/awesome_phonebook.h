@@ -1,5 +1,5 @@
-#ifndef AWESOME_PHONEBOOK
-#define AWESOME_PHONEBOOK
+#ifndef AWESOME_PHONEBOOK_H
+#define AWESOME_PHONEBOOK_H
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
@@ -12,6 +12,7 @@
 void		handleContact(PhoneBook& phonebook);
 void		handleSearch(PhoneBook& phonebook);
 std::string	trim(const std::string& str);
+void		prompt(void);
 void		fillList(PhoneBook& phonebook); //debug
 
-#endif //AWESOME_PHONEBOOK
+#endif //AWESOME_PHONEBOOK_H

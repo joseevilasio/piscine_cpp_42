@@ -1,4 +1,4 @@
-NAME = to_replace
+NAME = toReplace
 
 SRCS = main.cpp utils.cpp
 
