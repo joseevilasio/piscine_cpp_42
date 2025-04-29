@@ -19,11 +19,12 @@ int	main(int argc, char **argv)
 	if (output.is_open())
 	{
 		std::string buffer;
-		std::string word;
-		while (input >> word)
+		std::string line;
+		while (std::getline(input, line))
 		{
-			buffer.append(word);
-			//input.getline()
+			buffer.append(handleReplace(line, str1, str2));
+			if (!input.eof())
+				buffer.append("\n");
 		}
 		output << buffer;
 		output.close();

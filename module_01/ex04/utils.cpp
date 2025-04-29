@@ -33,3 +33,14 @@ std::string	defaultOutputName(std::string& filename)
 	std::string newFilename = filename.append(".replace");
 	return (newFilename);
 }
+
+std::string	handleReplace(std::string line, std::string& str1, std::string& str2)
+{
+	std::size_t pos = line.find(str1.c_str(), 0, str1.length());
+	if (pos != std::string::npos)
+	{
+		line.erase(pos, str1.length());
+		line.insert(pos, str2);
+	}
+	return (line);
+}
