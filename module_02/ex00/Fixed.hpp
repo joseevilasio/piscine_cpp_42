@@ -4,12 +4,17 @@
 class Fixed
 {
 	private:
-		int	fixedPoint;
-		static int const fractionalBits;
+		int	_fixedPoint;
+		static int const _fractionalBits;
 
 	public:
-		Fixed(/* args */);
-		~Fixed();
+		Fixed(void);
+		Fixed(const Fixed &fixed);
+		~Fixed(void);
+		Fixed & operator = (const Fixed &fixed);
+
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
 
 #endif //FIXED_HPP
