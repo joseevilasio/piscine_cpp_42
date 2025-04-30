@@ -13,8 +13,8 @@ class	PhoneBook
 		PhoneBook(void);
 		~PhoneBook(void);
 		void	addContact(const Contact& c);
-		int		getCount();
-		void	displayAll();
+		int		getCount(void) const;
+		void	displayAll(void);
 		void	displayContact(int id);
 };
 

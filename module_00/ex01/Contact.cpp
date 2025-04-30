@@ -14,35 +14,30 @@ void	Contact::setContact(const std::string& firstName,
 	_darkestSecret = darkestSecret;
 }
 
-std::string Contact::getFirstName() const
+std::string	Contact::getFirstName(void) const
 {
 	return (_firstName);
 }
 
-std::string Contact::getLastName() const
+std::string	Contact::getLastName(void) const
 {
 	return (_lastName);
 }
 
-std::string Contact::getNickname() const
+std::string	Contact::getNickname(void) const
 {
 	return (_nickname);
 }
 
-std::string Contact::getPhoneNumber () const
+int	Contact::getPhoneNumber (void) const
 {
-	std::ostringstream	oss;
-	std::string			phoneNumber;
-
-	oss << _phoneNumber;
-	phoneNumber = oss.str();
-	return (phoneNumber);
+	return (_phoneNumber);
 }
 
-std::string Contact::getDarkestSecret() const
+std::string	Contact::getDarkestSecret(void) const
 {
 	return (_darkestSecret);
 }
 
-Contact::Contact() {};
-Contact::~Contact() {};
+Contact::Contact(void) {};
+Contact::~Contact(void) {};

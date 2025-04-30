@@ -21,7 +21,7 @@ void	PhoneBook::addContact(const Contact& c)
 	}
 }
 
-int	PhoneBook::getCount()
+int	PhoneBook::getCount(void) const
 {
 	return (_count);
 }
@@ -36,7 +36,7 @@ static void	formmattedPrint(const std::string& str, int mode)
 		std::cout << '|';
 }
 
-void	PhoneBook::displayAll()
+void	PhoneBook::displayAll(void)
 {
 	formmattedPrint("Index", 1);
 	formmattedPrint("First Name", 1);

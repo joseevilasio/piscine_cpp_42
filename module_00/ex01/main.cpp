@@ -5,7 +5,6 @@ int	main(void)
 	PhoneBook	phonebook;
 	std::string	command;
 
-	fillList(phonebook); //debug
 	std::cout << "Welcome to the awesome phonebook \n";
 	while (true)
 	{

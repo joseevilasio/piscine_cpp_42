@@ -23,7 +23,7 @@ void	prompt(void)
 	std::cout << "→  ";
 }
 
-void	fillList(PhoneBook& phonebook)
+/* void	fillList(PhoneBook& phonebook)
 {
 	//TEST
 	Contact a, b, c, d, e, f, g;
@@ -42,4 +42,4 @@ void	fillList(PhoneBook& phonebook)
 	phonebook.addContact(e);
 	phonebook.addContact(f);
 	phonebook.addContact(g);
-}
+} */

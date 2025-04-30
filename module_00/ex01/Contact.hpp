@@ -13,16 +13,17 @@ class	Contact
 		std::string	_darkestSecret;
 
 	public:
-		Contact();
-		~Contact();
+		Contact(void);
+		~Contact(void);
 		void		setContact(const std::string& firstName,
-						const std::string& lastName, const std::string& nickname,
+						const std::string& lastName,
+						const std::string& nickname,
 						int phoneNumber, const std::string& darkestSecret);
-		std::string	getFirstName() const;
-		std::string	getLastName() const;
-		std::string	getNickname() const;
-		std::string	getPhoneNumber () const;
-		std::string	getDarkestSecret() const;
+		std::string	getFirstName(void) const;
+		std::string	getLastName(void) const;
+		std::string	getNickname(void) const;
+		int			getPhoneNumber (void) const;
+		std::string	getDarkestSecret(void) const;
 };
 
 #endif //CONTACT_HPP
