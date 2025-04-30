@@ -58,25 +58,12 @@ void	PhoneBook::displayAll()
 
 void	PhoneBook::displayContact(int id)
 {
-	std::ostringstream	oss;
-	std::string			index;
-
-	formmattedPrint("Index", 1);
-	formmattedPrint("First Name", 1);
-	formmattedPrint("Last Name", 1);
-	formmattedPrint("Nickname", 1);
-	formmattedPrint("Phone Number", 1);
-	formmattedPrint("Darkest Secret", 0);
-	std::cout << std::endl;
-	oss << (id + 1);
-	index = oss.str();
-	formmattedPrint(index, 1);
-	formmattedPrint(_contacts[id].getFirstName(), 1);
-	formmattedPrint(_contacts[id].getLastName(), 1);
-	formmattedPrint(_contacts[id].getNickname(), 1);
-	formmattedPrint(_contacts[id].getPhoneNumber(), 1);
-	formmattedPrint(_contacts[id].getDarkestSecret(), 0);
-	std::cout << std::endl;
+	std::cout << "Index: " << id + 1 << std::endl
+		<< "First Name :" << _contacts[id].getFirstName() << std::endl
+		<< "Last Name: " << _contacts[id].getLastName() << std::endl
+		<< "Nickname: " << _contacts[id].getNickname() << std::endl
+		<< "Phone Number: " << _contacts[id].getPhoneNumber() << std::endl
+		<< "Darkest Secret: " << _contacts[id].getDarkestSecret() << std::endl;
 }
 
 PhoneBook::PhoneBook(void) : _count(0) {};
