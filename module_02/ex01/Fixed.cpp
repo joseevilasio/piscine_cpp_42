@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 
-Fixed::Fixed(void) : _value(0)
+Fixed::Fixed(void) : _rawBits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -10,13 +10,13 @@ Fixed::Fixed(void) : _value(0)
 Fixed::Fixed(const int integer)
 {
 	std::cout << "Int constructor called" << std::endl;
-	_value = integer << _fractionalBits;
+	_rawBits = integer << _fractionalBits;
 }
 
 Fixed::Fixed(const float floating)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_value = roundf(floating * (1 << _fractionalBits));
+	_rawBits = roundf(floating * (1 << _fractionalBits));
 }
 
 Fixed& Fixed::operator=(const Fixed& rhs)
@@ -24,7 +24,7 @@ Fixed& Fixed::operator=(const Fixed& rhs)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
-		this->_value = rhs._value;
+		this->_rawBits = rhs._rawBits;
 	}
 	return (*this);
 }
@@ -42,12 +42,12 @@ Fixed::~Fixed(void)
 
 int	Fixed::toInt(void) const
 {
-	return (_value >> _fractionalBits);
+	return (_rawBits >> _fractionalBits);
 }
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)_value / (1 << _fractionalBits));
+	return ((float)_rawBits / (1 << _fractionalBits));
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& rhs)
