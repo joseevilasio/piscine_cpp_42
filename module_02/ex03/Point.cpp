@@ -10,6 +10,12 @@ Point::Point(const float x, const float y) : _x(Fixed(x)), _y(Fixed(y))
 	//std::cout << "Paramenter constructor called" << std::endl;
 }
 
+Point::Point(const Point& rhs) : _x(rhs._x), _y(rhs._y)
+{
+	//std::cout << "Copy constructor called" << std::endl;
+	//*this = rhs;
+}
+
 Point& Point::operator=(const Point& rhs)
 {
 	//std::cout << "Copy assignment operator called" << std::endl;
@@ -19,12 +25,6 @@ Point& Point::operator=(const Point& rhs)
 		(Fixed) this->_y = rhs._y;
 	}
 	return (*this);
-}
-
-Point::Point(const Point& rhs)
-{
-	//std::cout << "Copy constructor called" << std::endl;
-	*this = rhs;
 }
 
 Point::~Point(void)

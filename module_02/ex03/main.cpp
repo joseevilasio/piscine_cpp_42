@@ -3,10 +3,10 @@
 
 int	main(void)
 {
-	Point a(100, 100);
-	Point b(400, 100);
-	Point c(100, 300);
-	Point x(100, 100);
+	Point a(0.0f, 0.0f);
+	Point b(4.0f, 0.0f);
+	Point c(0.0f, 3.0f);
+	Point x(10.0f, 10.0f);
 
 	bsp(a, b, c, x);
 
