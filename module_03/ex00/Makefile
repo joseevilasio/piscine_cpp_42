@@ -1,6 +1,6 @@
-NAME = bsp
+NAME = claptrap
 
-SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
+SRCS = main.cpp ClapTrap.cpp
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
