@@ -7,7 +7,7 @@ Point::Point(void) : _x(0), _y(0)
 
 Point::Point(const float x, const float y) : _x(Fixed(x)), _y(Fixed(y))
 {
-	//std::cout << "Paramenter constructor called" << std::endl;
+	//std::cout << "Parameter constructor called" << std::endl;
 }
 
 Point::Point(const Point& rhs) : _x(rhs._x), _y(rhs._y)
