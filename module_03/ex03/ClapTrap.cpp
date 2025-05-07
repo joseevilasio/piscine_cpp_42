@@ -60,3 +60,13 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		_energyPoint--;
 	}
 }
+
+/* void	ClapTrap::display(void)
+{
+	std::cout << "\n --- Display DiamondTrap ---" << std::endl
+		<< "_name: " << _name << std::endl
+		<< "_hitPoints: " << _hitPoints << std::endl
+		<< "_energyPoints: " <<	_energyPoint << std::endl
+		<< "_attackDemage: " << _attackDemage << std::endl
+		<< " --- " << std::endl;
+} */

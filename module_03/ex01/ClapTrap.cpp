@@ -47,7 +47,10 @@ void	ClapTrap::takeDemage(unsigned int amount)
 	{
 		std::cout << "ClapTrap " << _name << " had " << amount
 		<< " damage! " << std::endl;
-		_hitPoints-=amount;
+		if (_hitPoints < amount)
+			_hitPoints = 0;
+		else
+			_hitPoints-=amount;
 	}
 }
 
@@ -58,5 +61,16 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << _name << " repaired " << amount
 		<< " hit points!" << std::endl;
 		_energyPoint--;
+		_hitPoints+=amount;
 	}
 }
+
+/* void	ClapTrap::display(void)
+{
+	std::cout << "\n --- Display ClapTrap ---" << std::endl
+		<< "_name: " << _name << std::endl
+		<< "_hitPoints: " << _hitPoints << std::endl
+		<< "_energyPoints: " <<	_energyPoint << std::endl
+		<< "_attackDemage: " << _attackDemage << std::endl
+		<< " --- " << std::endl;
+} */

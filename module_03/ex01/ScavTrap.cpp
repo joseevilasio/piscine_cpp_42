@@ -48,3 +48,13 @@ void	ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode!" << std::endl;
 }
+
+/* void	ScavTrap::display(void)
+{
+	std::cout << "\n --- Display ScavTrap ---" << std::endl
+		<< "_name: " << _name << std::endl
+		<< "_hitPoints: " << _hitPoints << std::endl
+		<< "_energyPoints: " <<	_energyPoint << std::endl
+		<< "_attackDemage: " << _attackDemage << std::endl
+		<< " --- " << std::endl;
+} */

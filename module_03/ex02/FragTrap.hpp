@@ -13,6 +13,8 @@ class FragTrap : public ClapTrap
 		~FragTrap(void);
 
 		void	highFivesGuys(void);
+
+		//void	display(void); //debug
 };
 
 #endif //FRAGTRAP_HPP

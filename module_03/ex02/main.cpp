@@ -28,11 +28,15 @@ int main(void)
 
 	{
 		FragTrap other("Other");
+
+		//other.display();
 	
 		other.attack("Marvin");
 		other.beRepaired(2);
 		other.takeDemage(2);
 		other.highFivesGuys();
+
+		//other.display();
 	}
 
 	return (0);

@@ -5,7 +5,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap
+class DiamondTrap : public FragTrap, public ScavTrap
 {
 	private:
 		std::string	_name;
@@ -17,7 +17,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		~DiamondTrap(void);
 
 		void	whoAmI(void);
-		void	display(void); //debug
+		//void	display(void); //debug
 };
 
 

@@ -20,6 +20,8 @@ class ClapTrap
 		void	attack(const std::string& target);
 		void	takeDemage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
+
+		//void	display(void); //debug
 };
 
 #endif //CLAPTRAP_HPP

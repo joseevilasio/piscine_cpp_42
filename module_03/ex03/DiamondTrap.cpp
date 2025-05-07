@@ -2,7 +2,7 @@
 #include <iostream>
 
 DiamondTrap::DiamondTrap(const std::string& name)
-	: ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
+	: ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name), _name(name)
 {
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
@@ -24,7 +24,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& rhs)
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& rhs)
-	: ClapTrap(rhs), ScavTrap(rhs), FragTrap(rhs)
+	: ClapTrap(rhs), FragTrap(rhs), ScavTrap(rhs)
 {
 	std::cout << "DiamondTrap Copy constructor called" << std::endl;
 	*this = rhs;
@@ -41,7 +41,7 @@ void	DiamondTrap::whoAmI(void)
 		<< " ClapTrap: " << ClapTrap::_name << std::endl;
 }
 
-void	DiamondTrap::display(void)
+/* void	DiamondTrap::display(void)
 {
 	std::cout << "\n --- Display DiamondTrap ---" << std::endl
 		<< "_name: " << _name << std::endl
@@ -49,4 +49,4 @@ void	DiamondTrap::display(void)
 		<< "_energyPoints: " <<	_energyPoint << std::endl
 		<< "_attackDemage: " << _attackDemage << std::endl
 		<< " --- " << std::endl;
-}
+} */

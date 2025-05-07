@@ -38,3 +38,13 @@ void	FragTrap::highFivesGuys(void)
 {
 	std::cout << "FragTrap " << _name << " requests high fives!" << std::endl;
 }
+
+/* void	FragTrap::display(void)
+{
+	std::cout << "\n --- Display DiamondTrap ---" << std::endl
+		<< "_name: " << _name << std::endl
+		<< "_hitPoints: " << _hitPoints << std::endl
+		<< "_energyPoints: " <<	_energyPoint << std::endl
+		<< "_attackDemage: " << _attackDemage << std::endl
+		<< " --- " << std::endl;
+} */
