@@ -35,5 +35,5 @@ const std::string& Cat::getType(void) const
 
 void	Cat::makeSound(void) const
 {
-	std::cout << "Miau!!" << std::endl;
+	std::cout << _type << ": Meow!!" << std::endl;
 }

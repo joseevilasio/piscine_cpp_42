@@ -1,6 +1,6 @@
 NAME = zoo
 
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
