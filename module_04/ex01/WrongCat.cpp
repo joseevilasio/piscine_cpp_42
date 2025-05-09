@@ -2,9 +2,8 @@
 #include "WrongCat.hpp"
 #include <iostream>
 
-WrongCat::WrongCat(void)
+WrongCat::WrongCat(void) : WrongAnimal(), _type("WrongCat")
 {
-	_type = "WrongCat";
 	std::cout << "WrongCat Default constructor called" << std::endl;
 }
 
@@ -27,6 +26,11 @@ WrongCat::WrongCat(const WrongCat& rhs) : WrongAnimal()
 WrongCat::~WrongCat(void)
 {
 	std::cout << "WrongCat Destructor called" << std::endl;
+}
+
+const std::string& WrongCat::getType(void) const
+{
+	return (_type);
 }
 
 void	WrongCat::makeSound(void) const
