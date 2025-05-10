@@ -2,7 +2,7 @@
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat(void) : brain(new Brain())
+Cat::Cat(void) : _brain(new Brain())
 {
 	_type = "Cat";
 	std::cout << "Cat Default constructor called" << std::endl;
@@ -13,7 +13,9 @@ Cat& Cat::operator=(const Cat& rhs)
 	std::cout << "Cat Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
-		_type = rhs._type;
+		Animal::operator=(rhs);
+		delete _brain;
+		_brain = new Brain(*rhs._brain);
 	}
 	return (*this);
 }
@@ -21,12 +23,13 @@ Cat& Cat::operator=(const Cat& rhs)
 Cat::Cat(const Cat& rhs) : Animal(rhs)
 {
 	std::cout << "Cat Copy constructor called" << std::endl;
+	_brain = new Brain(*rhs._brain);
 }
 
 Cat::~Cat(void)
 {
 	std::cout << "Cat Destructor called" << std::endl;
-	delete brain;
+	delete _brain;
 }
 
 void	Cat::makeSound(void) const
