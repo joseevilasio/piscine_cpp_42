@@ -2,12 +2,12 @@
 #define CAT_HPP
 
 #include <string>
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
-	
-	protected:
-		std::string	_type;
+	private:
+		Brain*	brain;
 
 	public:
 		Cat(void);
@@ -15,7 +15,6 @@ class Cat : public Animal
 		Cat(const Cat& rhs);
 		~Cat(void);
 
-		const std::string&	getType(void) const;
 		void	makeSound(void) const;
 };
 
