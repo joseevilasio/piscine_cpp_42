@@ -1,6 +1,6 @@
-NAME = brain
+NAME = interface
 
-SRCS = main.cpp
+SRCS = main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp
 
 CC = c++
 

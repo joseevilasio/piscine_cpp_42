@@ -1,5 +1,5 @@
-#ifndef A_MATERIA_HPP
-#define A_MATERIA_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
 #include "ICharacter.hpp"
 #include <string>
@@ -7,16 +7,18 @@
 class AMateria
 {
 	protected:
+		std::string	_type;
 
 	public:
+		AMateria(void);
 		AMateria(std::string const & type);
-		AMateria(const AMateria& rhs);
 		AMateria& operator=(const AMateria& rhs);
-		~AMateria(void);
+		AMateria(const AMateria& rhs);
+		virtual ~AMateria(void);
 
-		std::string const & getType() const; //Returns the materia type
+		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 };
 
-#endif //A_MATERIA_HPP
+#endif //AMATERIA_HPP
