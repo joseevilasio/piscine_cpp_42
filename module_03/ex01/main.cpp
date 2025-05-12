@@ -6,11 +6,21 @@ int main(void)
 {
 	{
 		ScavTrap marvin("Marvin");
+		ClapTrap* other = &marvin;
+		ClapTrap* again = new ScavTrap("Marvin");
 
 		//marvin.display(); //debug
 	
 		marvin.takeDemage(2);
 		marvin.attack("Jim");
+
+		std::cout << std::endl;
+
+		other->attack("other -> Jim");
+		again->attack("again -> Jim");
+
+		std::cout << std::endl;
+
 		marvin.beRepaired(2);
 		marvin.guardGate();
 
