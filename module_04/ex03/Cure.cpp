@@ -1,7 +1,7 @@
 #include "Cure.hpp"
 #include <iostream>
 
-Cure::Cure(std::string const & type) : AMateria("cure")
+Cure::Cure(/* std::string const & type */void) : AMateria("cure")
 {
 	std::cout << "[Cure] Default constructor called" << std::endl;
 }
@@ -26,14 +26,14 @@ Cure::~Cure(void)
 	std::cout << "[Cure] Destructor called" << std::endl;
 }
 
-std::string const & Cure::getType() const
+/* std::string const & Cure::getType() const
 {
 	return(_type);
-}
+} */
 
 Cure* Cure::clone() const
 {
-	return (new Cure("cure"));
+	return (new Cure());
 }
 
 void Cure::use(ICharacter& target)
