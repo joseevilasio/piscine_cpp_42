@@ -1,10 +1,12 @@
 #include "ICharacter.hpp"
+#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
 #include "AMateria.hpp"
 #include "Character.hpp"
 #include "Cure.hpp"
 #include "Ice.hpp"
 
-/* int	main(void)
+int	main(void)
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -22,4 +24,4 @@
 	delete me;
 	delete src;
 	return 0;
-} */
+}

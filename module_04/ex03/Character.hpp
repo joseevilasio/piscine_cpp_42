@@ -2,15 +2,16 @@
 #define CHARACTER_HPP
 
 #include <string>
-#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Character : public ICharacter
 {
 	private:
+		std::string _name;
 		AMateria* _slots[4];
 
 	public:
-		Character(void);
+		Character(std::string name);
 		Character& operator=(const Character& rhs);
 		Character(const Character& rhs);
 		~Character(void);

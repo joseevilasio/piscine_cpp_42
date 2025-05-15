@@ -1,7 +1,7 @@
 #include "Character.hpp"
 #include <iostream>
 
-Character::Character(void)
+Character::Character(std::string name) : _name(name)
 {
 	std::cout << "[Character] Default constructor called" << std::endl;
 }
@@ -31,7 +31,7 @@ Character::~Character(void)
 
 std::string const & Character::getName() const
 {
-	std::cout << "";
+	return (_name);
 }
 
 void Character::equip(AMateria* m)
