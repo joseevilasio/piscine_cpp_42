@@ -31,7 +31,12 @@ AMateria::~AMateria(void)
 	std::cout << "[AMateria] Destructor called" << std::endl;
 }
 
-std::string const & AMateria::getType() const
+std::string const &	AMateria::getType() const
 {
 	return(_type);
+}
+
+void	AMateria::use(ICharacter& target)
+{
+	std::cout << "[AMateria] use() nothing happens with " << target.getName() << std::endl;
 }

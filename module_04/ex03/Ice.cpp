@@ -1,7 +1,7 @@
 #include "Ice.hpp"
 #include <iostream>
 
-Ice::Ice(/* std::string const & type */void) : AMateria("ice")
+Ice::Ice(void) : AMateria("ice")
 {
 	std::cout << "[Ice] Default constructor called" << std::endl;
 }
@@ -26,17 +26,12 @@ Ice::~Ice(void)
 	std::cout << "[Ice] Destructor called" << std::endl;
 }
 
-std::string const & Ice::getType() const
+Ice*	Ice::clone() const
 {
-	return(_type);
+	return (new Ice(*this));
 }
 
-Ice* Ice::clone() const
-{
-	return (new Ice());
-}
-
-void Ice::use(ICharacter& target)
+void	Ice::use(ICharacter& target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
