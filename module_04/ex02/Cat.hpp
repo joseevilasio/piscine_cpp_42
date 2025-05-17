@@ -4,7 +4,7 @@
 #include <string>
 #include "Brain.hpp"
 
-class Cat : public Animal
+class Cat : public AAnimal
 {
 	private:
 		Brain*	_brain;

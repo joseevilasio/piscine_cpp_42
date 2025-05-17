@@ -46,7 +46,9 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-	(void)idx;
-	(void)target;
+	if (idx >= 0 && idx <= 3)
+	{
+		_slots[idx]->use(target);
+	}
 }
 

@@ -1,17 +1,17 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
 
 int	main(void)
 {
-/* 	std::cout << std::endl;
+	// std::cout << std::endl;
 
-	Animal meta;
- */
+	// AAnimal meta;
+
 	std::cout << std::endl;
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const AAnimal* j = new Dog();
+	const AAnimal* i = new Cat();
 
 	j->makeSound();
 	i->makeSound();

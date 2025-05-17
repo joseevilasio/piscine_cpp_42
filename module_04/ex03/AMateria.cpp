@@ -1,14 +1,14 @@
 #include "AMateria.hpp"
 #include <iostream>
 
-// AMateria::AMateria(void)
-// {
-// 	std::cout << "[AMateria] Parameter constructor called" << std::endl;
-// }
+AMateria::AMateria(void)
+{
+	std::cout << "[AMateria] Default constructor called" << std::endl;
+}
 
 AMateria::AMateria(std::string const & type) : _type(type)
 {
-	std::cout << "[AMateria] Default constructor called" << std::endl;
+	std::cout << "[AMateria] Parameter constructor called" << std::endl;
 }
 
 AMateria::AMateria(const AMateria& rhs)

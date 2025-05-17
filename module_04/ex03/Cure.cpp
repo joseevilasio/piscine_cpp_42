@@ -26,10 +26,10 @@ Cure::~Cure(void)
 	std::cout << "[Cure] Destructor called" << std::endl;
 }
 
-/* std::string const & Cure::getType() const
+std::string const & Cure::getType() const
 {
 	return(_type);
-} */
+}
 
 Cure* Cure::clone() const
 {

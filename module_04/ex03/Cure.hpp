@@ -13,7 +13,7 @@ class Cure : public AMateria
 		Cure(const Cure& rhs);
 		virtual ~Cure(void);
 
-		//std::string const & getType() const;
+		std::string const & getType() const;
 		Cure* clone() const;
 		void use(ICharacter& target);
 };

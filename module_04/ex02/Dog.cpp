@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include <iostream>
 
@@ -13,14 +13,14 @@ Dog& Dog::operator=(const Dog& rhs)
 	std::cout << "Dog Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
-		Animal::operator=(rhs);
+		AAnimal::operator=(rhs);
 		delete _brain;
 		_brain = new Brain(*rhs._brain);
 	}
 	return (*this);
 }
 
-Dog::Dog(const Dog& rhs) : Animal(rhs)
+Dog::Dog(const Dog& rhs) : AAnimal(rhs)
 {
 	std::cout << "Dog Copy constructor called" << std::endl;
 	_brain = new Brain(*rhs._brain);

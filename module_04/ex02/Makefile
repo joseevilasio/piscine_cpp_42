@@ -1,6 +1,6 @@
 NAME = abstract
 
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp WrongAnimal.cpp WrongCat.cpp
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98

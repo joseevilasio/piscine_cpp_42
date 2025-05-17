@@ -26,10 +26,10 @@ Ice::~Ice(void)
 	std::cout << "[Ice] Destructor called" << std::endl;
 }
 
-/* std::string const & Ice::getType() const
+std::string const & Ice::getType() const
 {
 	return(_type);
-} */
+}
 
 Ice* Ice::clone() const
 {

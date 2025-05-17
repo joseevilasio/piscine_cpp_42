@@ -13,7 +13,7 @@ class Ice : public AMateria
 		Ice(const Ice& rhs);
 		virtual ~Ice(void);
 
-		//std::string const & getType() const;
+		std::string const & getType() const;
 		Ice* clone() const;
 		void use(ICharacter& target);
 };

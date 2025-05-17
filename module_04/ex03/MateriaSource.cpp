@@ -26,7 +26,7 @@ MateriaSource::~MateriaSource(void)
 	std::cout << "[MateriaSource] Destructor called" << std::endl;
 }
 
-void learnMateria(AMateria*);
+void learnMateria(AMateria* materia);
 {
 	;
 }
