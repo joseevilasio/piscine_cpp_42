@@ -27,7 +27,7 @@ int	main(void)
 	std::cout << " -- Wrong Class -- " << std::endl;
 
 	const WrongAnimal* wrongAnimal = new WrongAnimal();
-	const WrongAnimal* wrongCat = new WrongCat();
+	const WrongCat* wrongCat = new WrongCat();
 
 	std::cout << wrongAnimal->getType() << " " << std::endl;
 	std::cout << wrongCat->getType() << " " << std::endl;

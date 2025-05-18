@@ -10,8 +10,9 @@ class Character : public ICharacter
 	private:
 		std::string	_name;
 		AMateria*	_inventory[4];
-		AMateria*	_trash[100];
-		int			_trashCount;
+		AMateria**	_unequipped;
+		int			_unequippedCount;
+		int			_unequippedCapacity;
 
 	public:
 
@@ -24,6 +25,7 @@ class Character : public ICharacter
 		void				equip(AMateria* m);
 		void				unequip(int idx);
 		void				use(int idx, ICharacter& target);
+		void				storeUnequipped(AMateria* m);
 };
 
 #endif //CHARACTER_HPP

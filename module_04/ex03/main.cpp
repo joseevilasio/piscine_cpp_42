@@ -5,10 +5,8 @@
 #include "Character.hpp"
 #include "Cure.hpp"
 #include "Ice.hpp"
+#include "Fire.hpp"
 #include <iostream>
-
-enum LogLevel {INFO, DEBUG, SILENT};
-LogLevel current_level = INFO;
 
 /* int main(void)
 {
@@ -51,7 +49,18 @@ LogLevel current_level = INFO;
 
 	// 	me->unequip(5); //Invalid index
 	// 	me->unequip(3);
+	// 	me->unequip(2);
+	// 	me->unequip(1);
+	// 	me->unequip(0);
+
+	// 	for (int i = 0; i < 10; i++)
+	// 	{
+	// 		me->equip(new Ice());
+	// 		me->unequip(0);
+	// 	}
+		
 	// 	std::cout << "Type: " << c->getType() << std::endl; //still
+
 
 	// 	delete e; //not equip
 	// 	delete me;
@@ -86,10 +95,20 @@ LogLevel current_level = INFO;
 	// 	delete tmp;
 	// }
 
+	// {
+	// 	std::cout << " -- Other Materia -- " << std::endl;
+
+	// 	ICharacter* me = new Character("me");
+	// 	me->equip(new Fire());
+	// 	me->use(0, *me);
+
+	// 	delete me;
+	// }
+
 	return (0);
 } */
 
-int	main(void)
+/* int	main(void)
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -100,12 +119,14 @@ int	main(void)
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+
 	delete bob;
 	delete me;
 	delete src;
-	return 0;
 
-}
+	return 0;
+} */
