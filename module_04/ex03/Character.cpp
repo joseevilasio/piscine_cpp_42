@@ -4,7 +4,7 @@
 Character::Character(std::string name) : _name(name), _trashCount(0)
 {
 	for (int i = 0; i < 4; i++)
-		_slots[i] = NULL;
+		_inventory[i] = NULL;
 	for (int i = 0; i < 100; i++)
 		_trash[i] = NULL;
 	std::cout << "[Character] Default constructor called" << std::endl;
@@ -15,10 +15,10 @@ Character::Character(const Character& rhs) : _name(rhs._name), _trashCount(0)
 	std::cout << "[Character] Copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (rhs._slots[i])
-			_slots[i] = rhs._slots[i]->clone();
+		if (rhs._inventory[i])
+			_inventory[i] = rhs._inventory[i]->clone();
 		else
-			_slots[i] = NULL;
+			_inventory[i] = NULL;
 	}
 	for (int i = 0; i < 100; i++)
 		_trash[i] = NULL;
@@ -31,8 +31,8 @@ Character& Character::operator=(const Character& rhs)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			delete _slots[i];
-			_slots[i] = NULL;
+			delete _inventory[i];
+			_inventory[i] = NULL;
 		}
 		for (int i = 0; i < _trashCount; i++)
 		{
@@ -43,10 +43,10 @@ Character& Character::operator=(const Character& rhs)
 		_name = rhs._name;
 		for (int i = 0; i < 4; i++)
 		{
-			if (rhs._slots[i])
-				_slots[i] = rhs._slots[i]->clone();
+			if (rhs._inventory[i])
+				_inventory[i] = rhs._inventory[i]->clone();
 			else
-				_slots[i] = NULL;
+				_inventory[i] = NULL;
 		}
 	}
 	return (*this);
@@ -55,7 +55,7 @@ Character& Character::operator=(const Character& rhs)
 Character::~Character(void)
 {
 	for (int i = 0; i < 4; i++)
-		delete _slots[i];
+		delete _inventory[i];
 	for (int i = 0; i < _trashCount; i++)
 		delete _trash[i];
 	std::cout << "[Character] Destructor called" << std::endl;
@@ -72,28 +72,28 @@ void	Character::equip(AMateria* m)
 		return ;
 	for(int i = 0; i < 4; i++)
 	{
-		if (_slots[i] == NULL)
+		if (_inventory[i] == NULL)
 		{
-			_slots[i] = m;
+			_inventory[i] = m;
 			return ;
 		}
-		if (i == 3 && _slots[i] != NULL)
+		if (i == 3 && _inventory[i] != NULL)
 			std::cout << "[Character] equip() -> FULL slots" << std::endl;
 	}
 }
 
 void	Character::unequip(int idx)
 {
-	if (idx >= 0 && idx <= 3 && _slots[idx] != NULL)
+	if (idx >= 0 && idx <= 3 && _inventory[idx] != NULL)
 	{
 		if (_trashCount < 100)
-			_trash[_trashCount++] = _slots[idx];
+			_trash[_trashCount++] = _inventory[idx];
 		else
 		{
 			std::cout << "[Character] unequip() -> FULL trash" << std::endl;
 			return ;
 		}
-		_slots[idx] = NULL;
+		_inventory[idx] = NULL;
 	}
 	else
 	{
@@ -103,9 +103,9 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (idx >= 0 && idx <= 3 && _slots[idx] != NULL)
+	if (idx >= 0 && idx <= 3 && _inventory[idx] != NULL)
 	{
-		_slots[idx]->use(target);
+		_inventory[idx]->use(target);
 	}
 	else
 	{
