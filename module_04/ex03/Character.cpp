@@ -77,7 +77,7 @@ void	Character::equip(AMateria* m)
 			_slots[i] = m;
 			return ;
 		}
-		if (i == 3 && _slots[i] != NULL) //debug
+		if (i == 3 && _slots[i] != NULL)
 			std::cout << "[Character] equip() -> FULL slots" << std::endl;
 	}
 }
@@ -90,12 +90,12 @@ void	Character::unequip(int idx)
 			_trash[_trashCount++] = _slots[idx];
 		else
 		{
-			std::cout << "[Character] unequip() -> FULL trash" << std::endl; //debug
+			std::cout << "[Character] unequip() -> FULL trash" << std::endl;
 			return ;
 		}
 		_slots[idx] = NULL;
 	}
-	else //debug
+	else
 	{
 		std::cout << "[Character] unequip() -> Invalid index or Empty slot" << std::endl;
 	}
@@ -107,7 +107,7 @@ void	Character::use(int idx, ICharacter& target)
 	{
 		_slots[idx]->use(target);
 	}
-	else //debug
+	else
 	{
 		std::cout << "[Character] use() -> Invalid index or Empty slot" << std::endl;
 	}

@@ -24,7 +24,7 @@ int	main(void)
 	delete j;
 	delete i;
 
-	std::cout << "Wrong Class" << std::endl;
+	std::cout << " -- Wrong Class -- " << std::endl;
 
 	const WrongAnimal* wrongAnimal = new WrongAnimal();
 	const WrongAnimal* wrongCat = new WrongCat();

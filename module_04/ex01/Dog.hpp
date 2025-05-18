@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Brain.hpp"
+#include "Animal.hpp"
 
 class Dog : public Animal
 {

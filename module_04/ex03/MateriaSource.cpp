@@ -54,7 +54,7 @@ void	MateriaSource::learnMateria(AMateria* materia)
 			delete materia;
 			return ;
 		}
-		if (i == 3 && _templates[i] != NULL) //debug
+		if (i == 3 && _templates[i] != NULL)
 			std::cout << "[Character] equip() -> FULL slots" << std::endl;
 	}
 	delete materia;

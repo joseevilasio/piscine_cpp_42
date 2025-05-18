@@ -5,11 +5,10 @@
 
 int	main(void)
 {
-	// std::cout << std::endl;
+	
+	//AAnimal meta;
 
-	// AAnimal meta;
-
-	std::cout << std::endl;
+	std::cout << "\n -- Basic -- \n\n";
 	const AAnimal* j = new Dog();
 	const AAnimal* i = new Cat();
 
@@ -19,7 +18,7 @@ int	main(void)
 	delete j;
 	delete i;
 
-	std::cout << std::endl;
+	std::cout << "\n -- Dog - Deep Copy -- \n\n";
 
 	Dog basic;
 	{
@@ -30,7 +29,7 @@ int	main(void)
 	}
 	basic.makeSound();
 
-	std::cout << std::endl;
+	std::cout << "\n -- Cat - Deep Copy -- \n\n";
 
 	Cat other;
 	{
