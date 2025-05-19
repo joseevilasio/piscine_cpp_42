@@ -43,7 +43,7 @@ Character& Character::operator=(const Character& rhs)
 		_unequippedCapacity = rhs._unequippedCapacity;
 
 		_unequipped = new AMateria*[_unequippedCapacity];
-		for (int i = 0; i < _unequippedCapacity; i++)
+		for (int i = 0; i < _unequippedCount; i++)
 			_unequipped[i] = rhs._unequipped[i]->clone();
 	}
 	std::cout << "[Character] Copy assignment operator called" << std::endl;
