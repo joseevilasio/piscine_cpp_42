@@ -10,6 +10,6 @@
 bool		ensureValidArguments(int argc, char **argv);
 bool		ensureValidFilestream(std::ifstream& file);
 std::string	defaultOutputName(std::string& filename);
-std::string	handleReplace(std::string line, std::string& str1, std::string& str2);
+void	handleReplace(std::string& line, const std::string& str1, const std::string& str2);
 
 #endif //UTILS_H

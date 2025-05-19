@@ -22,7 +22,8 @@ int	main(int argc, char **argv)
 		std::string line;
 		while (std::getline(input, line))
 		{
-			buffer.append(handleReplace(line, str1, str2));
+			handleReplace(line, str1, str2);
+			buffer.append(line);
 			if (!input.eof())
 				buffer.append("\n");
 		}
