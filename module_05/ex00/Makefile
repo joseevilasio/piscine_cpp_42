@@ -1,6 +1,6 @@
 NAME = bureaucrat
 
-SRCS = main.cpp 
+SRCS = main.cpp Bureaucrat.cpp
 
 CC = c++
 
