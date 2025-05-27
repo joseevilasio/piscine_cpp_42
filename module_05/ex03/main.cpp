@@ -6,14 +6,14 @@
 int	main(void)
 {
 	{
-		Bureaucrat bob("Bob", 10);
-		ShrubberyCreationForm home("home");
+			Bureaucrat bob("Bob", 10);
+			ShrubberyCreationForm home("home");
 			
-		std::cout << " -- ShrubberyCreationForm -- OK --" << std::endl;
-		std::cout << home;
+			std::cout << " -- ShrubberyCreationForm -- OK --" << std::endl;
+			std::cout << home;
 
-		bob.signForm(home);
-		bob.executeForm(home);
+			bob.signForm(home);
+			bob.executeForm(home);
 	}
 
 	{
