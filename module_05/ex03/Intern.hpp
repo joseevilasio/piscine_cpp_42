@@ -20,7 +20,10 @@ class Intern
 		Intern(const Intern& rhs);
 		~Intern(void);
 
-		void	makeForm(const std::string& formName, const std::string& target) const;
+		AForm*	makePresidentialPardonForm(const std::string &target);
+		AForm*	makeRobotomyRequestForm(const std::string &target);
+		AForm*	makeShrubberyCreationForm(const std::string &target);
+		AForm*	makeForm(const std::string& formName, const std::string& target);
 };
 
 #endif //INTERN_HPP

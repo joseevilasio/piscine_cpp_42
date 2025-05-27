@@ -38,16 +38,23 @@ int	Form::getGradeToExecute(void) const {return (_gradeToExecute);}
 
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high");
+	return ("Form: Grade is too high");
 }
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low");
+	return ("Form: Grade is too low");
+}
+
+const char*	Form::FormAlreadySigned::what() const throw()
+{
+	return ("Form: Form already signed");
 }
 
 void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
+	if (this->isSigned())
+		throw FormAlreadySigned();
 	if (bureaucrat.getGrade() > this->getGradeToSign())
 		throw GradeTooLowException();
 	_isSigned = true;

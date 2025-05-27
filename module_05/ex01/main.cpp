@@ -6,7 +6,7 @@ int	main(void)
 	{
 		try
 		{
-			Form("Alice", 0, 10);
+			Form("request", 0, 10);
 		}
 		catch (std::exception& e)
 		{
@@ -18,9 +18,11 @@ int	main(void)
 		Form contract("contract", 75, 10);
 		Bureaucrat bob("Bob", 76);
 		Bureaucrat rick("Rick", 74);
+		Bureaucrat marvin("Marvin", 74);
 
 		bob.signForm(contract);
 		rick.signForm(contract);
+		marvin.signForm(contract);
 
 		std::cout << contract;
 	}

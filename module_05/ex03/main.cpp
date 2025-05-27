@@ -1,74 +1,43 @@
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
+#include "AForm.hpp"
 
 int	main(void)
 {
 	{
+		std::cout << " -- Intern -- OK --" << std::endl;
+		try
+		{
+			Intern someRandomIntern;
+			AForm* rrf;
+
 			Bureaucrat bob("Bob", 10);
-			ShrubberyCreationForm home("home");
-			
-			std::cout << " -- ShrubberyCreationForm -- OK --" << std::endl;
-			std::cout << home;
 
-			bob.signForm(home);
-			bob.executeForm(home);
+			rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+
+			bob.signForm(*rrf);
+			bob.executeForm(*rrf);
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
 	}
 
 	{
-		Bureaucrat rick("Rick", 10);
-		RobotomyRequestForm washingDishes("washing dishes");
-		
-		std::cout << " -- RobotomyRequestForm -- OK --" << std::endl;
-		std::cout << washingDishes;
+		std::cout << " -- Intern -- Error --" << std::endl;
+		try
+		{
+			Intern someRandomIntern;
+			AForm* rrf;
 
-		rick.signForm(washingDishes);
-		rick.executeForm(washingDishes);
-	}
-
-	{
-		Bureaucrat rick("Rick", 10);
-		PresidentialPardonForm bob("bob");
-		
-		std::cout << " -- PresidentialPardonForm -- OK --" << std::endl;
-		std::cout << bob;
-
-		rick.signForm(bob);
-		rick.executeForm(bob);
-	}
-
-	{
-		Bureaucrat bob("Bob", 150);
-		ShrubberyCreationForm home("home");
-		
-		std::cout << " -- ShrubberyCreationForm -- Error --" << std::endl;
-		std::cout << home;
-
-		bob.signForm(home);
-		bob.executeForm(home);
-	}
-
-	{
-		Bureaucrat rick("Rick", 150);
-		RobotomyRequestForm washingDishes("washing dishes");
-		
-		std::cout << " -- RobotomyRequestForm -- Error --" << std::endl;
-		std::cout << washingDishes;
-
-		rick.signForm(washingDishes);
-		rick.executeForm(washingDishes);
-	}
-
-	{
-		Bureaucrat rick("Rick", 150);
-		PresidentialPardonForm bob("bob");
-		
-		std::cout << " -- PresidentialPardonForm -- Error --" << std::endl;
-		std::cout << bob;
-
-		rick.signForm(bob);
-		rick.executeForm(bob);
+			rrf = someRandomIntern.makeForm("otherform request", "Bender");
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
 
 	return (0);

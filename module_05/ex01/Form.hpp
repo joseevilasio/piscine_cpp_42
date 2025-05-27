@@ -27,6 +27,12 @@ class Form
 				virtual const char* what() const throw();
 		};
 
+		class FormAlreadySigned : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
 		Form(void);
 		Form(const std::string& name, int gradeToSign, int gradeToExecute);
 		Form& operator=(const Form& rhs);

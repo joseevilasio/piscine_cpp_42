@@ -1,7 +1,7 @@
-NAME = form
+NAME = intern
 
 SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-	RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+	RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 CC = c++
 

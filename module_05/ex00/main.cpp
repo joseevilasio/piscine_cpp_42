@@ -14,8 +14,15 @@ int	main(void)
 	}
 
 	{
-		Bureaucrat bob("Bob", 100);
-		std::cout << bob;
+		try
+		{
+			Bureaucrat bob("Bob", 100);
+			std::cout << bob;
+		}
+		catch (std::exception& e)
+		{
+			std::cout << "Error: " << e.what() << std::endl;
+		}
 	}
 
 	{
@@ -37,6 +44,21 @@ int	main(void)
 			Bureaucrat marvin("Marvin", 1);
 			std::cout << marvin;
 			marvin.increment();
+			std::cout << marvin;
+		}
+		catch (std::exception& e)
+		{
+			std::cout << "Error: " << e.what() << std::endl;
+		}
+	}
+
+	{
+		try
+		{
+			Bureaucrat marvin("Marvin", 1);
+			std::cout << marvin;
+			marvin.decrement();
+			std::cout << marvin;
 		}
 		catch (std::exception& e)
 		{

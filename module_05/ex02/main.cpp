@@ -14,6 +14,8 @@ int	main(void)
 
 		bob.signForm(home);
 		bob.executeForm(home);
+
+		std::cout << std::endl;
 	}
 
 	{
@@ -25,6 +27,8 @@ int	main(void)
 
 		rick.signForm(washingDishes);
 		rick.executeForm(washingDishes);
+
+		std::cout << std::endl;
 	}
 
 	{
@@ -36,6 +40,8 @@ int	main(void)
 
 		rick.signForm(bob);
 		rick.executeForm(bob);
+
+		std::cout << std::endl;
 	}
 
 	{
@@ -47,6 +53,8 @@ int	main(void)
 
 		bob.signForm(home);
 		bob.executeForm(home);
+
+		std::cout << std::endl;
 	}
 
 	{
@@ -58,6 +66,8 @@ int	main(void)
 
 		rick.signForm(washingDishes);
 		rick.executeForm(washingDishes);
+
+		std::cout << std::endl;
 	}
 
 	{
@@ -69,6 +79,21 @@ int	main(void)
 
 		rick.signForm(bob);
 		rick.executeForm(bob);
+
+		std::cout << std::endl;
+	}
+
+	{
+		Bureaucrat rick("Rick", 150);
+		PresidentialPardonForm bob("bob");
+		
+		std::cout << " -- PresidentialPardonForm -- Error --" << std::endl;
+		std::cout << bob;
+
+		//rick.signForm(bob);
+		rick.executeForm(bob);
+		
+		std::cout << std::endl;
 	}
 
 	return (0);

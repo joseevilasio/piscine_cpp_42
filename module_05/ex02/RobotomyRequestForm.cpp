@@ -27,14 +27,16 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {}
 
 void	RobotomyRequestForm::execute(const Bureaucrat& executor) const
 {
-	if (this->isSigned() && executor.getGrade() <= this->getGradeToExecute())
+	if (!this->isSigned())
 	{
-		std::cout << _target
-		<< " has been robotomized successfully 50% of the time." << std::endl;
+		std::cout << "robotomy failed!" << std::endl;
+		throw FormNotSigned();
 	}
-	else
+	if (executor.getGrade() > this->getGradeToExecute())
 	{
 		std::cout << "robotomy failed!" << std::endl;
 		throw GradeTooLowException();
 	}
+	std::cout << _target
+		<< " has been robotomized successfully 50% of the time." << std::endl;
 }
