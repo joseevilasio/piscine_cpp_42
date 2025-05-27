@@ -1,12 +1,13 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int	main(void)
 {
 	{
 		try
 		{
-			Form("Alice", 0, 10);
+			ShrubberyCreationForm a1("Alice");
+			std::cout << a1;
 		}
 		catch (std::exception& e)
 		{
@@ -14,16 +15,16 @@ int	main(void)
 		}
 	}
 
-	{
-		Form contract("contract", 75, 10);
-		Bureaucrat bob("Bob", 76);
-		Bureaucrat rick("Rick", 74);
+	// {
+	// 	AForm contract("contract", 75, 10);
+	// 	Bureaucrat bob("Bob", 76);
+	// 	Bureaucrat rick("Rick", 74);
 
-		bob.signForm(contract);
-		rick.signForm(contract);
+	// 	bob.signForm(contract);
+	// 	rick.signForm(contract);
 
-		std::cout << contract;
-	}
+	// 	std::cout << contract;
+	// }
 
 	return (0);
 }
