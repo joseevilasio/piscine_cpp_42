@@ -10,9 +10,9 @@ class Form
 {
 	private:
 		const std::string	_name;
-		bool				_signed;
-		const int			_gradeSign;
-		const int			_gradeExecute;
+		bool				_isSigned;
+		const int			_gradeToSign;
+		const int			_gradeToExecute;
 
 	public:
 		class GradeTooHighException : public std::exception
@@ -28,18 +28,16 @@ class Form
 		};
 
 		Form(void);
-		Form(const std::string& name, int gradeSign, int gradeExecute);
+		Form(const std::string& name, int gradeToSign, int gradeToExecute);
 		Form& operator=(const Form& rhs);
 		Form(const Form& rhs);
 		~Form(void);
 
 		const std::string&	getName(void) const;
-		bool				getSigned(void) const;
-		int					getGradeSign(void) const;
-		int					getGradeExecute(void) const;
-		// void				increment(void);
-		// void				decrement(void);
-		void				beSigned(Bureaucrat* bureaucrat);
+		bool				isSigned(void) const;
+		int					getGradeToSign(void) const;
+		int					getGradeToExecute(void) const;
+		void				beSigned(const Bureaucrat& bureaucrat);
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& rhs);

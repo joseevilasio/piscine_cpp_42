@@ -14,5 +14,16 @@ int	main(void)
 		}
 	}
 
+	{
+		Form contract("contract", 75, 10);
+		Bureaucrat bob("Bob", 76);
+		Bureaucrat rick("Rick", 74);
+
+		bob.signForm(contract);
+		rick.signForm(contract);
+
+		std::cout << contract;
+	}
+
 	return (0);
 }
