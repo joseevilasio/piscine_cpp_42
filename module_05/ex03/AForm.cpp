@@ -14,8 +14,7 @@ AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
 
 AForm::AForm(const AForm& rhs)
 	: _name(rhs._name), _isSigned(rhs._isSigned), _gradeToSign(rhs._gradeToSign),
-		_gradeToExecute(rhs._gradeToExecute)
-{*this = rhs;}
+		_gradeToExecute(rhs._gradeToExecute) {}
 
 AForm& AForm::operator=(const AForm& rhs)
 {

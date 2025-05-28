@@ -14,8 +14,7 @@ Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
 
 Form::Form(const Form& rhs)
 	: _name(rhs._name), _isSigned(rhs._isSigned), _gradeToSign(rhs._gradeToSign),
-		_gradeToExecute(rhs._gradeToExecute)
-{*this = rhs;}
+		_gradeToExecute(rhs._gradeToExecute) {}
 
 Form& Form::operator=(const Form& rhs)
 {

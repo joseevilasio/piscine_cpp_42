@@ -11,7 +11,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name)
 	_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& rhs) {*this = rhs;}
+Bureaucrat::Bureaucrat(const Bureaucrat& rhs) : _name(rhs._name), _grade(rhs._grade) {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 {
