@@ -1,5 +1,5 @@
 #include "ScalarConvert.hpp"
-#include <exception>
+#include <stdexcept>
 #include <iomanip>
 #include <cstdlib>
 #include <climits>
@@ -95,7 +95,8 @@ void	ScalarConvert::convertFromDouble(double d)
 
 bool	ScalarConvert::isChar(const std::string& src)
 {
-	if (src.length() == 3 && src[0] == '\'' && src[2] == '\'')
+	if ((src.length() == 3 && src[0] == '\'' && src[2] == '\'' && std::isprint(src[1]))
+		|| (src.length() == 1 && std::isprint(src[0]) && !std::isdigit(src[0])))
 		return (true);
 	return (false);
 }
@@ -120,8 +121,8 @@ bool	ScalarConvert::isFloat(const std::string& src)
 	char *end;
 	std::strtof(src.c_str(), &end);
 	if (*end == 'f' && *(end + 1) == '\0')
-		return (false);
-	return (true);
+		return (true);
+	return (false);
 }
 
 bool	ScalarConvert::isDouble(const std::string& src)
@@ -131,14 +132,21 @@ bool	ScalarConvert::isDouble(const std::string& src)
 	char *end;
 	std::strtod(src.c_str(), &end);
 	if (*end == '\0')
-		return (false);
-	return (true);
+		return (true);
+	return (false);
 }
 
 void	ScalarConvert::convert(const std::string& src)
 {
 	if (isChar(src))
-		convertFromChar(src[1]);
+	{
+		char c;
+		if (src.length() == 3)
+			c = src[1];
+		else
+			c = src[0];
+		convertFromChar(c);
+	}
 	else if (isInt(src))
 	{
 		int i = std::atoi(src.c_str());
