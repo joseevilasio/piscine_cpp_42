@@ -1,6 +1,6 @@
 NAME = real_type
 
-SRCS = main.cpp 
+SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp
 
 CC = c++
 

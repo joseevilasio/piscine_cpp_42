@@ -12,8 +12,8 @@ class Base
 		Base*	makeC(void);
 
 		Base*	generate(void);
-		void	identify(Base* p);
-		void	identify(Base& p);
+		// void	identify(Base* p);
+		// void	identify(Base& p);
 };
 
 #endif //BASE_HPP

@@ -2,6 +2,7 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <cstdlib>
 
 Base::Base(void) {}
 
@@ -24,15 +25,22 @@ Base*	Base::makeC(void)
 
 Base*	generate(void)
 {
+	Base* (Base::*baseFactory[3])() = {
+		&Base::makeA,
+		&Base::makeB,
+		&Base::makeC
+	};
 
+	int i = 1 + rand() % 3;
+	return ((this->*baseFactory[i])());
 }
 
-void	identify(Base* p)
-{
+// void	identify(Base* p)
+// {
 
-}
+// }
 
-void	identify(Base& p)
-{
+// void	identify(Base& p)
+// {
 
-}
+// }
