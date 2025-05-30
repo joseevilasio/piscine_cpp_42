@@ -17,6 +17,8 @@ int	main(void)
 
 			bob.signForm(*rrf);
 			bob.executeForm(*rrf);
+
+			delete rrf;
 		}
 		catch (std::exception& e)
 		{
@@ -33,6 +35,7 @@ int	main(void)
 			AForm* rrf;
 
 			rrf = someRandomIntern.makeForm("otherform request", "Bender");
+			(void) rrf;
 		}
 		catch (std::exception& e)
 		{
