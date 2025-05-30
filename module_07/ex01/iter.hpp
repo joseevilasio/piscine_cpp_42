@@ -3,12 +3,12 @@
 
 #include <iostream>
 
-template <typename A, typename S, typename F>
-void	iter(A *address, S length, F function)
+template <typename T, typename F>
+void	iter(T *array, std::size_t length, F function)
 {
-	for (int i = 0; i < length; i++)
+	for (std::size_t i = 0; i < length; i++)
 	{
-		function(address[i]);
+		function(array[i]);
 	}
 }
 
