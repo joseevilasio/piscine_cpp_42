@@ -6,14 +6,12 @@ class Base
 	public:
 		Base(void);
 		virtual ~Base(void);
-	
-		Base*	makeA(void);
-		Base*	makeB(void);
-		Base*	makeC(void);
-
-		Base*	generate(void);
-		// void	identify(Base* p);
-		// void	identify(Base& p);
 };
+
+Base*	generate(void);
+
+void	identify(Base* p);
+
+void	identify(Base& p);
 
 #endif //BASE_HPP

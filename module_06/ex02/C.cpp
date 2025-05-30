@@ -1,5 +1,6 @@
 #include "C.hpp"
+#include <iostream>
 
-C::C(void) {}
+C::C(void) {std::cout << "Created a class C\n";}
 
 C::~C(void) {}
