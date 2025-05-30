@@ -3,23 +3,26 @@
 
 int	main(void)
 {
-	Data nbr(42);
-	Data* nbr_ptr = &nbr;
+	Data form("Bob", 42);
+	Data* form_ptr = &form;
 
-	std::cout << "[DATA] value: " << nbr._value << std::endl;
-	std::cout << "[DATA] memory_address: " << nbr_ptr << std::endl;
+	std::cout << "[DATA] name: " << form._name << std::endl;
+	std::cout << "[DATA] age: " << form._age << std::endl;
+	std::cout << "[DATA] memory_address: " << form_ptr << std::endl;
 
-	uintptr_t nbr_serialized = Serializer::serialize(nbr_ptr);
-	Data* nbr_deserialized = Serializer::deserialize(nbr_serialized);
+	uintptr_t form_serialized = Serializer::serialize(form_ptr);
+	Data* form_deserialized = Serializer::deserialize(form_serialized);
 
-	std::cout << "[DATA - Serialized] uintptr_t: " << nbr_serialized << std::endl;
-	std::cout << "[DATA - Deserialized]: memory_address: " << nbr_deserialized << std::endl;
-	std::cout << "[DATA - Deserialized]: value: " << nbr_deserialized->_value << std::endl;
+	std::cout << "[DATA - Serialized] uintptr_t: " << form_serialized << std::endl;
+	std::cout << "[DATA - Deserialized]: memory_address: " << form_deserialized << std::endl;
 
-	if (nbr_deserialized == nbr_ptr)
-		std::cout << "nbr_deserialized == nbr_ptr\n";
+	std::cout << "[DATA - Deserialized]: name: " << form_deserialized->_name << std::endl;
+	std::cout << "[DATA - Deserialized]: age: " << form_deserialized->_age << std::endl;
+
+	if (form_deserialized == form_ptr)
+		std::cout << "form_deserialized == form_ptr\n";
 	else
-		std::cout << "nbr_deserialized != nbr_ptr\n";
+		std::cout << "form_deserialized != form_ptr\n";
 
 	return (0);
 }

@@ -1,11 +1,14 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
+#include <iostream>
+
 struct Data
 {
-	int _value;
+	std::string _name;
+	int _age;
 
-	Data(int value);
+	Data(const std::string& name, int age);
 };
 
 #endif //DATA_HPP
