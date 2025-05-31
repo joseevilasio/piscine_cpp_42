@@ -1,5 +1,14 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 #include <Array.hpp>
+
+// int main(void)
+// {
+// 	int *a = new int();
+// 	std::cout << *a;
+// 	return (0);
+// }
 
 #define MAX_VAL 750
 
