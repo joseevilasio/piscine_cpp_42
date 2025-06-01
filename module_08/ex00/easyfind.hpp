@@ -1,13 +1,16 @@
 #ifndef EASY_FIND_HPP
 #define EASY_FIND_HPP
 
-template <template <typename> class Container>
-int	easyfind(Container<int> obj, int x)
+#include <algorithm>
+#include <stdexcept>
+
+template <typename T>
+int	easyfind(const T& container, int value)
 {
-	std::Container<int>::iterator it = std::find(obj.begin(), obj.end(), x);
-	if (it != obj.end())
+	typename T::const_iterator it = std::find(container.begin(), container.end(), value);
+	if (it != container.end())
 		return (*it);
-	return (-1);
+	throw std::runtime_error("Value not found");
 }
 
 #endif //EASY_FIND_HPP
