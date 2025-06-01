@@ -1,6 +1,6 @@
-NAME = templates
+NAME = container
 
-SRCS = main.cpp
+SRCS = main.cpp easyfind.hpp
 
 CC = c++
 
