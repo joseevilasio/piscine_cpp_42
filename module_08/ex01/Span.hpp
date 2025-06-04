@@ -17,6 +17,10 @@ class Span
 		~Span(void);
 
 		void	addNumber(int nbr);
+		//void	addNumber(int nbrs[]);
+		int		shortestSpan(void) const;
+		int		longestSpan(void) const;
+		void	print(void) const;
 		
 };
 
