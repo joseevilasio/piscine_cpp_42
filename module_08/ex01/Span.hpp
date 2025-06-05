@@ -20,8 +20,7 @@ class Span
 		void	addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
 		int		shortestSpan(void) const;
 		int		longestSpan(void) const;
-		void	print(void) const;
-		
+		void	print(void) const;		
 };
 
 #endif //SPAN_HPP

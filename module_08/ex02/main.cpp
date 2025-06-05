@@ -1,0 +1,28 @@
+#include "MutantStack.hpp"
+
+int main(void)
+{
+	MutantStack<int>	mstack;
+
+	mstack.push(5);
+	mstack.push(17);
+
+	std::cout << mstack.top() << std::endl;
+
+	mstack.pop();
+
+	std::cout << mstack.size() << std::endl;
+
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	mstack.push(7);
+	mstack.push(77);
+	mstack.push(70);
+	mstack.push(1);
+
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+
+	return (0);
+}
