@@ -3,23 +3,18 @@
 
 #include <iostream>
 #include <stack>
+#include <deque>
 
 template <typename T>
 class MutantStack : public std::stack<T>
 {
-	private:
-		std::stack<T>	_stack;
-		T*				_begin;
-		T*				_end;
-
 	public:
 		MutantStack(void);
 		// MutantStack& operator=(const MutantStack& rhs);
 		// MutantStack(const MutantStack& rhs);
 		~MutantStack(void);
 
-		void		push(const T& n);
-		typedef T*	iterator;
+		typedef typename std::stack<T>::container_type::iterator iterator;
 		iterator	begin(void);
 		iterator	end(void);
 

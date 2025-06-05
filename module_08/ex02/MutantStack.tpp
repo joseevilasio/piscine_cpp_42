@@ -39,32 +39,16 @@ MutantStack<T>::MutantStack(void) {}
 // }
 
 template <typename T>
-void	MutantStack<T>::push(const T& n)
-{
-	if (_stack.empty())
-	{
-		_stack.push(n);
-		_end = _stack.top();
-		_begin = _stack.top();
-	}
-	else
-	{
-		_stack.push(n);
-		_begin = _stack.top();
-	}
-}
-
-template <typename T>
 MutantStack<T>::~MutantStack(void) {}
 
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::begin(void)
 {
-	return (_begin);
+	return (this->c.begin());
 }
 
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::end(void)
 {
-	return (_end);
+	return (this->c.end());
 }
