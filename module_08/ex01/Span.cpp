@@ -7,9 +7,17 @@ Span::Span(void) {}
 
 Span::Span(unsigned int n) : _max(n) {}
 
-// Span& Span::operator=(const Span& rhs)
+Span& Span::operator=(const Span& rhs)
+{
+	if (this != &rhs)
+	{
+		_max = rhs._max;
+		_elements = rhs._elements;
+	}
+	return (*this);
+}
 
-// Span::Span(const Span& rhs) {}
+Span::Span(const Span& rhs) : _max(rhs._max), _elements(rhs._elements) {}
 
 Span::~Span(void) {}
 
@@ -31,14 +39,14 @@ void	Span::print(void) const
 	}
 }
 
-// void	Span::addNumber(int* nbrs)
-// {
-// 	std::size_t size = nbrs / sizeof(int);
+void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
+{
+	std::size_t distance = std::distance(first, last);
 
-// 	if (_elements.size() == _max)
-// 		throw std::length_error("Maximum size reached");
-// 	_elements.push_back(nbr);
-// }
+	if (_elements.size() + distance > _max)
+		throw std::length_error("Maximum size reached");
+	_elements.insert(_elements.end(), first, last);
+}
 
 int	Span::shortestSpan(void) const
 {
