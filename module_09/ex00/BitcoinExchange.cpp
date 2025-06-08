@@ -1,5 +1,6 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
+#include <cstdlib>
 
 BitcoinExchange::BitcoinExchange(const std::string& db_path)
 {
@@ -31,12 +32,18 @@ bool	BitcoinExchange::init_db(const std::string& db_path)
 	while (std::getline(db, line))
 	{
 		std::size_t sep = line.find(",");
-		std::string cpy;
-		std::size_t len = line.copy(cpy, 0, sep);
-		cpy[len] = '\0';
+		std::string date = line.substr(0, sep);
+		std::string value = line.substr(sep + 1);
 
-		std::cout << cpy << std::endl; //debug
+		float f = std::strtof(value.c_str(), NULL);
+		std::cout << date << "->" << f << std::endl;
+		//_database.insert( std::pair<std::string, std::string>(date, value));
 	}
+
+	// std::map<std::string, std::string>::iterator it;
+
+	// for (it = _database.begin(); it != _database.end(); ++it)
+	// 	std::cout <<  it->first << " -> " << it->second << std::endl;
 
 	std::cout << "init db: " << db_path << std::endl;
 
