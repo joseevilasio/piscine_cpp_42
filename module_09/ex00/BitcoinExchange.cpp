@@ -1,11 +1,13 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
 #include <cstdlib>
+#include <cfloat>
+#include <sstream>
 
 BitcoinExchange::BitcoinExchange(const std::string& db_path)
 {
 	if (!BitcoinExchange::init_db(db_path))
-		throw std::runtime_error("Failure to start the database");
+		throw std::runtime_error("Error: Failure to start the database");
 }
 
 // BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs)
@@ -31,19 +33,26 @@ bool	BitcoinExchange::init_db(const std::string& db_path)
 	std::string line;
 	while (std::getline(db, line))
 	{
-		std::size_t sep = line.find(",");
-		std::string date = line.substr(0, sep);
-		std::string value = line.substr(sep + 1);
-
-		float f = std::strtof(value.c_str(), NULL);
-		std::cout << date << "->" << f << std::endl;
-		//_database.insert( std::pair<std::string, std::string>(date, value));
+		try
+		{
+			std::size_t sep = line.find(",");
+			std::string date = line.substr(0, sep);
+			std::string value = line.substr(sep + 1);
+			if (date == "date")
+				continue ;
+			_validateDate(date);
+			float f = _convertValue(value, "database");
+			_database.insert(std::pair<std::string, float>(date, f));
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 
-	// std::map<std::string, std::string>::iterator it;
-
-	// for (it = _database.begin(); it != _database.end(); ++it)
-	// 	std::cout <<  it->first << " -> " << it->second << std::endl;
+	std::map<std::string, float>::iterator it; //debug
+	for (it = _database.begin(); it != _database.end(); ++it) //debug
+		std::cout <<  it->first << " -> " << it->second << std::endl; //debug
 
 	std::cout << "init db: " << db_path << std::endl;
 
@@ -53,36 +62,82 @@ bool	BitcoinExchange::init_db(const std::string& db_path)
 
 bool	BitcoinExchange::exchange(const std::string& input_path) const
 {
-	// if (!BitcoinExchange::validate_path(input_path))
-	// 	throw std::runtime_error("could not open file.");
-
 	std::ifstream input(input_path.c_str());
 
 	if (!input.is_open())
-		throw std::runtime_error("could not open file.");
+		throw std::runtime_error("Error: could not open file.");
 
 	return (true);
 }
 
-bool	BitcoinExchange::validate_path(const std::string& path)
+// bool	BitcoinExchange::validate_path(const std::string& path)
+// {
+// 	std::ifstream file(path.c_str());
+// 	if (file.is_open())
+// 	{
+// 		file.close();
+// 		return (true);
+// 	}
+// 	return (false);
+// }
+
+bool	BitcoinExchange::_validateDateValue(const std::string& value, const std::string& type)
 {
-	std::ifstream file(path.c_str());
-	if (file.is_open())
-	{
-		file.close();
-		return (true);
-	}
-	return (false);
+	std::istringstream iss(value);
+	int i;
+
+	if (!(iss >> i))
+		return (false);
+	if (!iss.eof())
+		return (false);
+	if (type == "year" && i < 1000 && i > 3000)
+		return (false);
+	if (type == "month" && i < 1 && i > 12)
+		return (false);
+	if (type == "day" && i < 1 && i > 31)
+		return (false);
+	return (true);
 }
 
-bool	BitcoinExchange::validate_date(const std::string& date)
+bool	BitcoinExchange::_validateDate(const std::string& date)
 {
-	(void)date;
-	return (true);
-} 
+	// 2012-01-01
+	// 0123456789
+	std::string error = "Error: bad input => " + date;
 
-bool	BitcoinExchange::validate_value(const std::string& value)
-{
-	(void)value;
+	if (date.length() != 10)
+		throw std::logic_error(error);
+	if (date.substr(4, 1) != "-" || date.substr(7, 1) != "-")
+		throw std::logic_error(error);
+	if (!BitcoinExchange::_validateDateValue(date.substr(0, 4), "year"))
+		throw std::logic_error(error);
+	if (!BitcoinExchange::_validateDateValue(date.substr(5, 2), "month"))
+		throw std::logic_error(error);
+	if (!BitcoinExchange::_validateDateValue(date.substr(8, 2), "day"))
+		throw std::logic_error(error);
+
+	//TODO added validate leap year
 	return (true);
+}
+
+float	BitcoinExchange::_convertValue(const std::string& value, const std::string& type)
+{
+	errno = 0;
+	char* end;
+
+	float f = std::strtod(value.c_str(), &end);
+
+	if (value.c_str() == end)
+		throw std::range_error("Error: not a valid numeric value.");
+	if (errno == ERANGE) //INPUT != DATABASE
+		throw std::range_error("Error: too large a number.");
+	if (type == "input" && f > 1000)
+		throw std::range_error("Error: too large a number.");
+	if (f < 0)
+		throw std::range_error("Error: not a positive number.");
+	while (*end == ' ' || *end == '\t' || *end == '\n')
+		++end;
+	if (*end != '\0')
+		throw std::range_error("Error: not a valid numeric value.");
+	return (f);
 }

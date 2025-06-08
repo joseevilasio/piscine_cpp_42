@@ -7,11 +7,11 @@
 class BitcoinExchange
 {
 	private:
-		std::map<std::string, std::string>	_database;
+		std::map<std::string, float>	_database;
 
-		static bool	validate_path(const std::string& path); //remove
-		static bool	validate_date(const std::string& date);
-		static bool	validate_value(const std::string& value);
+		bool	_validateDate(const std::string& date);
+		bool	_validateDateValue(const std::string& value, const std::string& type);
+		float	_convertValue(const std::string& value, const std::string& type);
 
 	public:
 		BitcoinExchange(const std::string& db_path);
