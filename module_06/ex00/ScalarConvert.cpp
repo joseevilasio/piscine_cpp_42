@@ -51,14 +51,17 @@ void	ScalarConvert::convertFromInt(int i)
 
 void	ScalarConvert::convertFromFloat(float f)
 {
-	if (std::isnan(f) || f < CHAR_MIN || f > CHAR_MAX)
-		std::cout << "char: impossible\n";
-	else if (!std::isprint(static_cast<char>(f)))
-		std::cout << "char: Non displayable\n";
+	if (f >= 0 && f <= 127)
+	{
+		if (std::isprint(f))
+			std::cout << "char: '" << static_cast<char>(f) << "'\n";
+		else
+			std::cout << "char: Non displayable\n";
+	}
 	else
-		std::cout << "char: '" << static_cast<char>(f) << "'\n";
+		std::cout << "char: impossible\n";
 	
-	if (std::isnan(f) || f < INT_MIN || f > INT_MAX)
+	if (std::isnan(f) || f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
 		std::cout << "int: impossible\n";
 	else
 		std::cout << "int: " << static_cast<int>(f) << "\n";
@@ -70,14 +73,17 @@ void	ScalarConvert::convertFromFloat(float f)
 
 void	ScalarConvert::convertFromDouble(double d)
 {
-	if (std::isnan(d) || d < CHAR_MIN || d > CHAR_MAX)
-		std::cout << "char: impossible\n";
-	else if (!std::isprint(static_cast<char>(d)))
-		std::cout << "char: Non displayable\n";
+	if (d >= 0 && d <= 127)
+	{
+		if (std::isprint(d))
+			std::cout << "char: '" << static_cast<char>(d) << "'\n";
+		else
+			std::cout << "char: Non displayable\n";
+	}
 	else
-		std::cout << "char: '" << static_cast<char>(d) << "'\n";
-	
-	if (std::isnan(d) || d < INT_MIN || d > INT_MAX)
+		std::cout << "char: impossible\n";
+
+	if (std::isnan(d) || d < static_cast<float>(INT_MIN) || d > static_cast<float>(INT_MAX))
 		std::cout << "int: impossible\n";
 	else
 		std::cout << "int: " << static_cast<int>(d) << "\n";
