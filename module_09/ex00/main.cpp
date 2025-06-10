@@ -12,7 +12,6 @@ int main(int argc, char** argv)
 		BitcoinExchange engine("./data.csv");
 		std::string input(argv[1]);
 		engine.exchange(input);
-		std::cout << "ok!\n"; //debug
 	}
 	catch(const std::exception& e)
 	{

@@ -3,10 +3,13 @@
 #include <cstdlib>
 #include <cfloat>
 #include <sstream>
+#include <cstdio>
+#include <algorithm>
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(const std::string& db_path)
 {
-	if (!BitcoinExchange::init_db(db_path))
+	if (!BitcoinExchange::_init_db(db_path))
 		throw std::runtime_error("Error: Failure to start the database");
 }
 
@@ -23,7 +26,7 @@ BitcoinExchange::BitcoinExchange(const std::string& db_path)
 
 BitcoinExchange::~BitcoinExchange(void) {}
 
-bool	BitcoinExchange::init_db(const std::string& db_path)
+bool	BitcoinExchange::_init_db(const std::string& db_path)
 {
 	std::ifstream db(db_path.c_str());
 
@@ -50,23 +53,38 @@ bool	BitcoinExchange::init_db(const std::string& db_path)
 		}
 	}
 
-	std::map<std::string, float>::iterator it; //debug
-	for (it = _database.begin(); it != _database.end(); ++it) //debug
-		std::cout <<  it->first << " -> " << it->second << std::endl; //debug
-
-	std::cout << "init db: " << db_path << std::endl;
-
 	db.close();
 	return (true);
 }
 
-bool	BitcoinExchange::exchange(const std::string& input_path) const
+bool	BitcoinExchange::exchange(const std::string& input_path)
 {
 	std::ifstream input(input_path.c_str());
 
 	if (!input.is_open())
 		throw std::runtime_error("Error: could not open file.");
 
+	std::string line;
+	while (std::getline(input, line))
+	{
+		try
+		{
+			line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+			std::size_t sep = line.find("|"); //diff
+			std::string date = line.substr(0, sep);
+			std::string value = line.substr(sep + 1);
+			if (date == "date")
+				continue ;
+			_validateDate(date);
+			float f = _convertValue(value, "input");
+			std::cout << date << " => " << f << " = " << f * _findValue(date) << std::endl; //debug
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+	input.close();
 	return (true);
 }
 
@@ -85,16 +103,16 @@ bool	BitcoinExchange::_validateDateValue(const std::string& value, const std::st
 {
 	std::istringstream iss(value);
 	int i;
-
+	
 	if (!(iss >> i))
 		return (false);
 	if (!iss.eof())
 		return (false);
-	if (type == "year" && i < 1000 && i > 3000)
+	if (type == "year" && (i < 1000 || i > 3000))
 		return (false);
-	if (type == "month" && i < 1 && i > 12)
+	if (type == "month" && (i < 1 || i > 12))
 		return (false);
-	if (type == "day" && i < 1 && i > 31)
+	if (type == "day" && (i < 1 || i > 31))
 		return (false);
 	return (true);
 }
@@ -109,7 +127,7 @@ bool	BitcoinExchange::_validateDate(const std::string& date)
 		throw std::logic_error(error);
 	if (date.substr(4, 1) != "-" || date.substr(7, 1) != "-")
 		throw std::logic_error(error);
-	if (!BitcoinExchange::_validateDateValue(date.substr(0, 4), "year"))
+	if (!BitcoinExchange::_validateDateValue(date.substr(0, 4), "year")) //enum?
 		throw std::logic_error(error);
 	if (!BitcoinExchange::_validateDateValue(date.substr(5, 2), "month"))
 		throw std::logic_error(error);
@@ -141,3 +159,15 @@ float	BitcoinExchange::_convertValue(const std::string& value, const std::string
 		throw std::range_error("Error: not a valid numeric value.");
 	return (f);
 }
+
+float	BitcoinExchange::_findValue(const std::string& date)
+{
+	(void)date;
+	std::map<std::string, float>::const_iterator match = _database.lower_bound(date);
+	if (match != _database.end())
+	{
+		return (match->second);
+	}
+	float f = 100;
+	return (f);
+}	

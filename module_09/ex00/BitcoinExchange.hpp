@@ -12,6 +12,8 @@ class BitcoinExchange
 		bool	_validateDate(const std::string& date);
 		bool	_validateDateValue(const std::string& value, const std::string& type);
 		float	_convertValue(const std::string& value, const std::string& type);
+		float	_findValue(const std::string& date);
+		bool	_init_db(const std::string& db_path);
 
 	public:
 		BitcoinExchange(const std::string& db_path);
@@ -19,8 +21,7 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange& rhs);
 		~BitcoinExchange(void);
 
-		bool	exchange(const std::string& input_path) const;
-		bool	init_db(const std::string& db_path);
+		bool	exchange(const std::string& input_path);		
 };
 
 #endif //BITCOIN_EXCHANGE_HPP
