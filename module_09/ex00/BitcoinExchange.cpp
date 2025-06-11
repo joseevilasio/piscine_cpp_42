@@ -177,21 +177,16 @@ float	BitcoinExchange::_convertValue(const std::string& value, const std::string
 
 float	BitcoinExchange::_findValue(const std::string& date)
 {
-	std::map<std::string, float>::const_iterator it = _database.begin();
-	std::map<std::string, float>::const_iterator ite = _database.end();
-
-	ite--;
-
-	if (date < it->first)
+	if (_database.empty())
 		return (0);
-	if (date > ite->first)
-		return (ite->second);
+	if (date < _database.begin()->first)
+		return (0);
 
-	std::map<std::string, float>::const_iterator match = _database.lower_bound(date);
-	// if (match != ite)
-	// {
-	return (match->second);
-	// }
-	// float f = 100;
-	// return (f);
+	std::map<std::string, float>::const_iterator it = _database.lower_bound(date);
+	if (it != _database.end() && it->first == date)
+		return (it->second);
+	if (it == _database.begin())
+		return (0);
+	--it;
+	return (it->second);
 }
