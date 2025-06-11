@@ -131,29 +131,25 @@ bool	BitcoinExchange::_validateDateValue(const std::string& value, const std::st
 
 bool	BitcoinExchange::_validateDate(const std::string& date)
 {
-	std::string	error = "Error: bad input => " + date;
-	bool		isLeapYear = false;
+	std::string	error = "Error: bad input => " + date;	
 	int			daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
 	if (date.length() != 10 || (date.substr(4, 1) != "-" || date.substr(7, 1) != "-"))
 		throw std::logic_error(error);
 
-	int	year	= _convertDate(date.substr(0, 4));
-	int	month	= _convertDate(date.substr(5, 2));
-	int	day		= _convertDate(date.substr(8, 2));
+	int year		= _convertDate(date.substr(0, 4));
+	int month		= _convertDate(date.substr(5, 2));
+	int day			= _convertDate(date.substr(8, 2));
+	bool isLeapYear = ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0));
 
-	if ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0))
-		isLeapYear = true;
-
-	if ((year < 1000 || year > 3000) && (month < 1 || month > 12) && (day < 1))
+	if (year < 1000 || year > 3000 || month < 1 || month > 12 || day < 1)
 		throw std::logic_error(error);
 	if (isLeapYear && month == 2 && day > 29)
 		throw std::logic_error(error);
-	else if (day > daysInMonth[month - 1])
-	{
-		std::cout << "nao era para entrar aqui\n";
+	if (!isLeapYear && month == 2 && day > 28)
 		throw std::logic_error(error);
-	}
+	if (month != 2 && day > daysInMonth[month - 1])
+		throw std::logic_error(error);
 	return (true);
 }
 
@@ -181,12 +177,19 @@ float	BitcoinExchange::_convertValue(const std::string& value, const std::string
 
 float	BitcoinExchange::_findValue(const std::string& date)
 {
-	(void)date;
+	std::map<std::string, float>::const_iterator it = _database.begin();
+	std::map<std::string, float>::const_iterator ite = _database.end();
+
+	if (date < it->first)
+		return (0);
+	if (date > ite->first)
+		return (ite->second);
+
 	std::map<std::string, float>::const_iterator match = _database.lower_bound(date);
-	if (match != _database.end())
-	{
-		return (match->second);
-	}
-	float f = 100;
-	return (f);
+	// if (match != ite)
+	// {
+	return (match->second);
+	// }
+	// float f = 100;
+	// return (f);
 }
