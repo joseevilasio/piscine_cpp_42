@@ -99,6 +99,18 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 // 	return (false);
 // }
 
+int		BitcoinExchange::_convertDate(const std::string& value)
+{
+	std::istringstream iss(value);
+	int i;
+	
+	if (!(iss >> i))
+		return (-1);
+	if (!iss.eof())
+		return (-1);
+	return (i);
+}
+
 bool	BitcoinExchange::_validateDateValue(const std::string& value, const std::string& type)
 {
 	std::istringstream iss(value);
@@ -119,22 +131,29 @@ bool	BitcoinExchange::_validateDateValue(const std::string& value, const std::st
 
 bool	BitcoinExchange::_validateDate(const std::string& date)
 {
-	// 2012-01-01
-	// 0123456789
-	std::string error = "Error: bad input => " + date;
+	std::string	error = "Error: bad input => " + date;
+	bool		isLeapYear = false;
+	int			daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
-	if (date.length() != 10)
-		throw std::logic_error(error);
-	if (date.substr(4, 1) != "-" || date.substr(7, 1) != "-")
-		throw std::logic_error(error);
-	if (!BitcoinExchange::_validateDateValue(date.substr(0, 4), "year")) //enum?
-		throw std::logic_error(error);
-	if (!BitcoinExchange::_validateDateValue(date.substr(5, 2), "month"))
-		throw std::logic_error(error);
-	if (!BitcoinExchange::_validateDateValue(date.substr(8, 2), "day"))
+	if (date.length() != 10 || (date.substr(4, 1) != "-" || date.substr(7, 1) != "-"))
 		throw std::logic_error(error);
 
-	//TODO added validate leap year
+	int	year	= _convertDate(date.substr(0, 4));
+	int	month	= _convertDate(date.substr(5, 2));
+	int	day		= _convertDate(date.substr(8, 2));
+
+	if ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0))
+		isLeapYear = true;
+
+	if ((year < 1000 || year > 3000) && (month < 1 || month > 12) && (day < 1))
+		throw std::logic_error(error);
+	if (isLeapYear && month == 2 && day > 29)
+		throw std::logic_error(error);
+	else if (day > daysInMonth[month - 1])
+	{
+		std::cout << "nao era para entrar aqui\n";
+		throw std::logic_error(error);
+	}
 	return (true);
 }
 
@@ -170,4 +189,4 @@ float	BitcoinExchange::_findValue(const std::string& date)
 	}
 	float f = 100;
 	return (f);
-}	
+}
