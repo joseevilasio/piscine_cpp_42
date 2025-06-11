@@ -180,6 +180,8 @@ float	BitcoinExchange::_findValue(const std::string& date)
 	std::map<std::string, float>::const_iterator it = _database.begin();
 	std::map<std::string, float>::const_iterator ite = _database.end();
 
+	ite--;
+
 	if (date < it->first)
 		return (0);
 	if (date > ite->first)
