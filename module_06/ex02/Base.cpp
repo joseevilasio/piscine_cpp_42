@@ -33,6 +33,8 @@ void	identify(Base* p)
 		std::cout << "B\n";
 	else if (dynamic_cast<C*>(p))
 		std::cout << "C\n";
+	else
+		std::cout << "Unknown type\n";
 }
 
 void	identify(Base& p)
