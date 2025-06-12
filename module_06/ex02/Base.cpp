@@ -5,8 +5,6 @@
 #include <cstdlib>
 #include <iostream>
 
-Base::Base(void) {}
-
 Base::~Base(void) {}
 
 Base*	generate(void)
