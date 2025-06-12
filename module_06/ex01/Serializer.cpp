@@ -5,10 +5,6 @@ Serializer::Serializer(void) {}
 
 Serializer&	Serializer::operator=(const Serializer& rhs)
 {
-	if (this != &rhs)
-	{
-		Serializer::operator=(rhs);
-	}
 	return (*this);
 }
 

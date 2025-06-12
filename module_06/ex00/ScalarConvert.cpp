@@ -12,10 +12,6 @@ ScalarConvert::ScalarConvert(void) {}
 
 ScalarConvert&	ScalarConvert::operator=(const ScalarConvert& rhs)
 {
-	if (this != &rhs)
-	{
-		ScalarConvert::operator=(rhs);
-	}
 	return (*this);
 }
 
