@@ -5,6 +5,7 @@ Serializer::Serializer(void) {}
 
 Serializer&	Serializer::operator=(const Serializer& rhs)
 {
+	(void)rhs;
 	return (*this);
 }
 

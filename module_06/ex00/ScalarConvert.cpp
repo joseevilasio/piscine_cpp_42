@@ -12,6 +12,7 @@ ScalarConvert::ScalarConvert(void) {}
 
 ScalarConvert&	ScalarConvert::operator=(const ScalarConvert& rhs)
 {
+	(void)rhs;
 	return (*this);
 }
 

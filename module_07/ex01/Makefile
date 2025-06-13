@@ -1,6 +1,6 @@
 NAME = templates
 
-SRCS = main.cpp iter.hpp
+SRCS = main.cpp
 
 CC = c++
 
