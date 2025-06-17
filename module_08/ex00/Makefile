@@ -1,6 +1,6 @@
 NAME = container
 
-SRCS = main.cpp easyfind.hpp
+SRCS = main.cpp
 
 CC = c++
 
