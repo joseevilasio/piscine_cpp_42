@@ -49,7 +49,7 @@ int main(void)
 	}
 
 	{
-		std::cout << "\nTEST 03 -- Very, very much so\n";
+		std::cout << "\nTEST 03 -- Too big\n";
 		
 		try
 		{

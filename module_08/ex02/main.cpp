@@ -74,13 +74,13 @@ int	main(void)
 
 		std::list<int>::iterator l_it = list.begin();
 		std::vector<int>::iterator v_it = v.begin();
-		//std::list<int>::iterator l_ite = list.end();
 
 		while (it != ite)
 		{
 			std::cout << "mstack : " << *it << std::endl;
 			std::cout << "list   : " << *l_it << std::endl;
 			std::cout << "vector : " << *v_it << std::endl;
+			std::cout << std::endl;
 			++it;
 			++l_it;
 			++v_it;
