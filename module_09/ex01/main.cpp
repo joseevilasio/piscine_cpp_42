@@ -3,18 +3,20 @@
 
 int main(int argc, char** argv)
 {
-	(void)argv;
-
-	if (argc < 2)
+	if (argc != 2)
 	{
-		std::cout << "Error\n";
+		std::cout << "Error" << std::endl;
+		return (1);
 	}
-
-	RPN polish;
-
-	polish.insert(10);
-	polish.remove();
-	// polish.remove();
-
+	try
+	{
+		std::string	expr(argv[1]);
+		RPN	polish(expr);
+		polish.execute();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (0);
 }

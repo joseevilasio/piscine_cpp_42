@@ -7,19 +7,23 @@
 class RPN
 {
 	private:
-		std::stack<int>	_stack;
-		// int				_right;
-		// int				_left;
-		// int				_operator; 
+		std::stack<int>		_numbers;
+		std::stack<char>	_operators;
+
+		int		_getTopNumbers(void);
+		char	_getTopOperators(void);
+		bool	_isOperator(const char& c) const;
+		bool	_insert(const std::string& expr);
+		int		_calculate(int left, int right, char op);
+
+		RPN&	operator=(const RPN& rhs); //add
+		RPN(const RPN& rhs); //add
 
 	public:
-		RPN(void);
+		RPN(const std::string& expr);
 		~RPN(void);
-		//copy
 
-		void	insert(int n);
-		void	remove(void);
-		//validar input
+		void	execute(void);
 };
 
 #endif //RPN_HPP
