@@ -1,1 +1,164 @@
 #include "PmergeMe.hpp"
+
+PmergeMe::PmergeMe(int size, char** argv) : _vectorElapsedTime(0), _dequeElapsedTime(0)
+{
+	int nbr;
+
+	for (int i = 1; i <= size; ++i)
+	{
+		nbr = _convert(argv[i]);
+		_vectorBefore.push_back(nbr);
+		_dequeBefore.push_back(nbr);
+	}
+
+	if (!(_isSorted(_vectorBefore, &_vectorElapsedTime)
+		&& _isSorted(_dequeBefore, &_dequeElapsedTime)))
+	{
+		std::clock_t startV = std::clock();
+		_sortVector(_vectorBefore, _vectorAfter);
+		std::clock_t endV = std::clock();
+		_vectorElapsedTime = _elapsedTime(startV, endV);
+
+		//sortDeque();
+	}
+	else
+	{
+		_vectorAfter = _vectorBefore;
+		_dequeAfter = _dequeBefore;
+	}
+}
+
+PmergeMe&	PmergeMe::operator=(const PmergeMe& rhs)
+{
+	if (this != &rhs)
+	{
+		;
+	}
+	return (*this);
+}
+
+PmergeMe::PmergeMe(const PmergeMe& rhs)
+{
+	*this = rhs;
+}
+
+PmergeMe::~PmergeMe(void) {}
+
+void	PmergeMe::info(void) const
+{
+	int size = _vectorBefore.size();
+
+	std::cout << "Before: ";
+	_printContainer(_vectorBefore);
+	
+	std::cout << "\nAfter: ";
+	_printContainer(_vectorAfter);
+
+	std::cout << std::fixed << std::setprecision(5);
+	std::cout << "\nTime to process a range of " << size
+		<< " elements with std::vector : " << _vectorElapsedTime << " us";
+
+	std::cout << "\nTime to process a range of " << size
+		<< " elements with std::deque : " << _dequeElapsedTime << " us\n";
+}
+
+int	PmergeMe::_convert(char* src) const
+{
+	char* end;
+	errno = 0;
+	long num = std::strtol(src, &end, 10);
+
+	if (*end == '\0' && errno == 0 && num >= 0 && num <= UINT_MAX)
+		return (static_cast<int>(num));
+	throw std::invalid_argument("Invalid Argument");
+}
+
+double	PmergeMe::_elapsedTime(std::clock_t start, std::clock_t end) const
+{
+	double elapsed = 1e6 * (end - start) / CLOCKS_PER_SEC;
+	return (elapsed);
+}
+
+void	PmergeMe::_sortVector(std::vector<int>& before, std::vector<int>& after)
+{
+	if (before.size() <= 1)
+		return ;
+
+	std::vector<int> bigger;
+	std::vector<int> smaller;
+
+	for (std::size_t i = 0; i + 1 < before.size(); i += 2)
+	{
+		int a = before[i];
+		int b = before[i + 1];
+
+		if (a > b)
+		{
+			bigger.push_back(a);
+			smaller.push_back(b);
+		}
+		else
+		{
+			bigger.push_back(b);
+			smaller.push_back(a);
+		}
+	}
+
+	if (before.size() % 2 != 0)
+		bigger.push_back(before.back());
+	
+	_sortVector(bigger, after);
+
+	for (std::size_t i = 0; i < smaller.size(); ++i)
+		_insertVector(bigger, smaller[i]);
+	
+	after = bigger;
+}
+
+void	PmergeMe::_insertVector(std::vector<int>& container, int value)
+{
+	std::vector<int>::iterator it = container.begin();
+	std::vector<int>::iterator ite = container.end();
+
+	while (it < ite)
+	{
+		std::vector<int>::iterator mid = it + (ite - it) / 2;
+		if (*mid < value)
+			it = mid + 1;
+		else
+			ite = mid;
+	}
+	container.insert(it, value);
+}
+
+template <typename Container>
+bool	PmergeMe::_isSorted(const Container& src, double* elapsedTime)
+{
+	std::clock_t start = std::clock();
+
+	if (src.size() == 1)
+		return (true);
+
+	typename Container::const_iterator it = src.begin();
+	typename Container::const_iterator next = it;
+	++next;
+
+	while (next != src.end())
+	{
+		if (*it > *next)
+			return (false);
+		++it;
+		++next;
+	}
+	std::clock_t end = std::clock();
+	*elapsedTime = _elapsedTime(start, end);
+	return (true);
+}
+
+template <typename Container>
+void	PmergeMe::_printContainer(const Container& src) const
+{
+	typename Container::const_iterator it;
+	for (it = src.begin(); it != src.end(); ++it)
+		std::cout << *it << " ";
+}

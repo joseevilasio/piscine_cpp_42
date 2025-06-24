@@ -7,7 +7,7 @@ CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
 $(NAME): $(SRCS)
-	$(CC) $(CFLAGS) -I./ $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 all: $(NAME)
 
