@@ -82,7 +82,10 @@ double	PmergeMe::_elapsedTime(std::clock_t start, std::clock_t end) const
 void	PmergeMe::_sortVector(std::vector<int>& before, std::vector<int>& after)
 {
 	if (before.size() <= 1)
+	{
+		after = before;
 		return ;
+	}
 
 	std::vector<int> bigger;
 	std::vector<int> smaller;
@@ -104,15 +107,16 @@ void	PmergeMe::_sortVector(std::vector<int>& before, std::vector<int>& after)
 		}
 	}
 
-	if (before.size() % 2 != 0)
-		bigger.push_back(before.back());
-	
-	_sortVector(bigger, after);
+	std::vector<int> sortedBigger;
+	_sortVector(bigger, sortedBigger);
 
 	for (std::size_t i = 0; i < smaller.size(); ++i)
-		_insertVector(bigger, smaller[i]);
+		_insertVector(sortedBigger, smaller[i]);
+
+	if (before.size() % 2 != 0)
+		_insertVector(sortedBigger, before.back());
 	
-	after = bigger;
+	after = sortedBigger;
 }
 
 void	PmergeMe::_insertVector(std::vector<int>& container, int value)
@@ -129,36 +133,4 @@ void	PmergeMe::_insertVector(std::vector<int>& container, int value)
 			ite = mid;
 	}
 	container.insert(it, value);
-}
-
-template <typename Container>
-bool	PmergeMe::_isSorted(const Container& src, double* elapsedTime)
-{
-	std::clock_t start = std::clock();
-
-	if (src.size() == 1)
-		return (true);
-
-	typename Container::const_iterator it = src.begin();
-	typename Container::const_iterator next = it;
-	++next;
-
-	while (next != src.end())
-	{
-		if (*it > *next)
-			return (false);
-		++it;
-		++next;
-	}
-	std::clock_t end = std::clock();
-	*elapsedTime = _elapsedTime(start, end);
-	return (true);
-}
-
-template <typename Container>
-void	PmergeMe::_printContainer(const Container& src) const
-{
-	typename Container::const_iterator it;
-	for (it = src.begin(); it != src.end(); ++it)
-		std::cout << *it << " ";
 }

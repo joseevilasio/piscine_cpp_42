@@ -44,4 +44,36 @@ class PmergeMe
 		void	info(void) const;
 };
 
+template <typename Container>
+bool	PmergeMe::_isSorted(const Container& src, double* elapsedTime)
+{
+	std::clock_t start = std::clock();
+
+	if (src.size() == 1)
+		return (true);
+
+	typename Container::const_iterator it = src.begin();
+	typename Container::const_iterator next = it;
+	++next;
+
+	while (next != src.end())
+	{
+		if (*it > *next)
+			return (false);
+		++it;
+		++next;
+	}
+	std::clock_t end = std::clock();
+	*elapsedTime = _elapsedTime(start, end);
+	return (true);
+}
+
+template <typename Container>
+void	PmergeMe::_printContainer(const Container& src) const
+{
+	typename Container::const_iterator it;
+	for (it = src.begin(); it != src.end(); ++it)
+		std::cout << *it << " ";
+}
+
 #endif //PMERGE_ME_HPP
