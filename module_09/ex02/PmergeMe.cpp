@@ -35,7 +35,12 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe& rhs)
 {
 	if (this != &rhs)
 	{
-		;
+		_vectorBefore = rhs._vectorBefore;
+		_dequeBefore = rhs._dequeBefore;
+		_vectorAfter = rhs._vectorAfter;
+		_dequeAfter = rhs._dequeAfter;
+		_vectorElapsedTime = rhs._vectorElapsedTime;
+		_dequeElapsedTime = rhs._dequeElapsedTime;
 	}
 	return (*this);
 }
