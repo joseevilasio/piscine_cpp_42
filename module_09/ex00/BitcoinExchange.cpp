@@ -13,16 +13,16 @@ BitcoinExchange::BitcoinExchange(const std::string& db_path)
 		throw std::runtime_error("Error: Failure to start the database");
 }
 
-// BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs)
-// {
-// 	// if (this != &rhs)
-// 	// {
-// 	// 	//_database = rhs._database;
-// 	// }
-// 	return (*this);
-// }
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs)
+{
+	if (this != &rhs)
+	{
+		_database = rhs._database;
+	}
+	return (*this);
+}
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange& rhs) {*this=rhs;}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& rhs) {*this=rhs;}
 
 BitcoinExchange::~BitcoinExchange(void) {}
 
@@ -88,17 +88,6 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 	return (true);
 }
 
-// bool	BitcoinExchange::validate_path(const std::string& path)
-// {
-// 	std::ifstream file(path.c_str());
-// 	if (file.is_open())
-// 	{
-// 		file.close();
-// 		return (true);
-// 	}
-// 	return (false);
-// }
-
 int		BitcoinExchange::_convertDate(const std::string& value)
 {
 	std::istringstream iss(value);
@@ -162,7 +151,7 @@ float	BitcoinExchange::_convertValue(const std::string& value, const std::string
 
 	if (value.c_str() == end)
 		throw std::range_error("Error: not a valid numeric value.");
-	if (errno == ERANGE) //INPUT != DATABASE
+	if (errno == ERANGE)
 		throw std::range_error("Error: too large a number.");
 	if (type == "input" && f > 1000)
 		throw std::range_error("Error: too large a number.");

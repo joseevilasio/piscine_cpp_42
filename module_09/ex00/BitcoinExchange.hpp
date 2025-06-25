@@ -22,7 +22,7 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange& rhs);
 		~BitcoinExchange(void);
 
-		bool	exchange(const std::string& input_path);		
+		bool	exchange(const std::string& input_path);
 };
 
 #endif //BITCOIN_EXCHANGE_HPP

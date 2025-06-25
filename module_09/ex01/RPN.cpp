@@ -9,9 +9,20 @@ RPN::RPN(const std::string& expr)
 
 RPN::~RPN(void) {}
 
-//add copy
+RPN::RPN(const RPN& rhs)
+{
+	*this = rhs;
+}
 
-//add copy assg
+RPN& RPN::operator=(const RPN& rhs)
+{
+	if (this != &rhs)
+	{
+		_numbers = rhs._numbers;
+		_operators = rhs._operators;
+	}
+	return (*this);
+}
 
 int	RPN::_getTopNumbers()
 {
@@ -40,7 +51,6 @@ bool	RPN::_insert(const std::string& expr)
 
 	for (it = expr.rbegin(); it != expr.rend(); ++it)
 	{
-		std::cout << "Item: " << *it << std::endl; //debug
 		if (std::isspace(*it))
 			continue ;
 		if (_isOperator(*it))
@@ -76,7 +86,6 @@ void	RPN::execute(void)
 			int right = _getTopNumbers();
 			char op = _getTopOperators();
 			int nbr = _calculate(left, right, op);
-			std::cout << left << " " << op << " " << right << " = " << nbr << std::endl; //debug
 			_numbers.push(nbr);
 		}
 	}
