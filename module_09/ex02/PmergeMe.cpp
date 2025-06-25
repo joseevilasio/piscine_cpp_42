@@ -19,7 +19,10 @@ PmergeMe::PmergeMe(int size, char** argv) : _vectorElapsedTime(0), _dequeElapsed
 		std::clock_t endV = std::clock();
 		_vectorElapsedTime = _elapsedTime(startV, endV);
 
-		//sortDeque();
+		std::clock_t startD = std::clock();
+		_sortDeque(_dequeBefore, _dequeAfter);
+		std::clock_t endD = std::clock();
+		_dequeElapsedTime = _elapsedTime(startD, endD);
 	}
 	else
 	{
@@ -127,6 +130,62 @@ void	PmergeMe::_insertVector(std::vector<int>& container, int value)
 	while (it < ite)
 	{
 		std::vector<int>::iterator mid = it + (ite - it) / 2;
+		if (*mid < value)
+			it = mid + 1;
+		else
+			ite = mid;
+	}
+	container.insert(it, value);
+}
+
+void	PmergeMe::_sortDeque(std::deque<int>& before, std::deque<int>& after)
+{
+	if (before.size() <= 1)
+	{
+		after = before;
+		return ;
+	}
+
+	std::deque<int> bigger;
+	std::deque<int> smaller;
+
+	for (std::size_t i = 0; i + 1 < before.size(); i += 2)
+	{
+		int a = before[i];
+		int b = before[i + 1];
+
+		if (a > b)
+		{
+			bigger.push_back(a);
+			smaller.push_back(b);
+		}
+		else
+		{
+			bigger.push_back(b);
+			smaller.push_back(a);
+		}
+	}
+
+	std::deque<int> sortedBigger;
+	_sortDeque(bigger, sortedBigger);
+
+	for (std::size_t i = 0; i < smaller.size(); ++i)
+		_insertDeque(sortedBigger, smaller[i]);
+
+	if (before.size() % 2 != 0)
+		_insertDeque(sortedBigger, before.back());
+	
+	after = sortedBigger;
+}
+
+void	PmergeMe::_insertDeque(std::deque<int>& container, int value)
+{
+	std::deque<int>::iterator it = container.begin();
+	std::deque<int>::iterator ite = container.end();
+
+	while (it < ite)
+	{
+		std::deque<int>::iterator mid = it + (ite - it) / 2;
 		if (*mid < value)
 			it = mid + 1;
 		else

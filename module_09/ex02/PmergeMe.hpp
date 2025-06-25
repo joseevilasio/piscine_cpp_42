@@ -26,7 +26,7 @@ class PmergeMe
 		void			_sortVector(std::vector<int>& before, std::vector<int>& after);
 		void			_insertVector(std::vector<int>& container, int value);
 
-		void			_sortDeque(std::deque<int>& container);
+		void			_sortDeque(std::deque<int>& before, std::deque<int>& after);
 		void			_insertDeque(std::deque<int>& container, int value);
 
 		template <typename Container>
