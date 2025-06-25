@@ -16,8 +16,8 @@ class RPN
 		bool	_insert(const std::string& expr);
 		int		_calculate(int left, int right, char op);
 
-		RPN&	operator=(const RPN& rhs); //add
-		RPN(const RPN& rhs); //add
+		RPN&	operator=(const RPN& rhs);
+		RPN(const RPN& rhs);
 
 	public:
 		RPN(const std::string& expr);

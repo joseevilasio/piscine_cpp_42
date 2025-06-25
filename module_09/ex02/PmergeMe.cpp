@@ -45,10 +45,7 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe& rhs)
 	return (*this);
 }
 
-PmergeMe::PmergeMe(const PmergeMe& rhs)
-{
-	*this = rhs;
-}
+PmergeMe::PmergeMe(const PmergeMe& rhs) {*this = rhs;}
 
 PmergeMe::~PmergeMe(void) {}
 

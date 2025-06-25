@@ -9,10 +9,7 @@ RPN::RPN(const std::string& expr)
 
 RPN::~RPN(void) {}
 
-RPN::RPN(const RPN& rhs)
-{
-	*this = rhs;
-}
+RPN::RPN(const RPN& rhs) {*this = rhs;}
 
 RPN& RPN::operator=(const RPN& rhs)
 {
