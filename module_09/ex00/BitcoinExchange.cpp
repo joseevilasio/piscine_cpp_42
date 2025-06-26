@@ -77,6 +77,7 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 				continue ;
 			_validateDate(date);
 			float f = _convertValue(value, "input");
+			std::cout << date << " => " << f << " = " << f * _findValue(date) << std::endl;
 		}
 		catch(const std::exception& e)
 		{

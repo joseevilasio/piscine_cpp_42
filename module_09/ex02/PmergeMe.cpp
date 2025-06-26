@@ -59,7 +59,6 @@ void	PmergeMe::info(void) const
 	std::cout << "\nAfter: ";
 	_printContainer(_vectorAfter);
 
-	std::cout << std::fixed << std::setprecision(5);
 	std::cout << "\nTime to process a range of " << size
 		<< " elements with std::vector : " << _vectorElapsedTime << " us";
 
