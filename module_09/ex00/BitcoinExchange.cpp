@@ -70,6 +70,8 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 		try
 		{
 			line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+			if (line.empty())
+				continue ;
 			std::size_t sep = line.find("|");
 			std::string date = line.substr(0, sep);
 			std::string value = line.substr(sep + 1);
@@ -77,7 +79,8 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 				continue ;
 			_validateDate(date);
 			float f = _convertValue(value, "input");
-			std::cout << date << " => " << f << " = " << f * _findValue(date) << std::endl;
+			std::cout << date << " => " << f << " = "
+				<< f * _findValue(date) << std::endl;
 		}
 		catch(const std::exception& e)
 		{
