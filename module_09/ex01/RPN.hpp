@@ -8,12 +8,10 @@ class RPN
 {
 	private:
 		std::stack<int>		_numbers;
-		std::stack<char>	_operators;
+		std::string			_expr;
 
 		int		_getTopNumbers(void);
-		char	_getTopOperators(void);
 		bool	_isOperator(const char& c) const;
-		bool	_insert(const std::string& expr);
 		int		_calculate(int left, int right, char op);
 
 		RPN&	operator=(const RPN& rhs);
