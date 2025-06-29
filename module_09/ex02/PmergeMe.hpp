@@ -20,14 +20,18 @@ class PmergeMe
 		double				_vectorElapsedTime;
 		double				_dequeElapsedTime;
 
-		int	_convert(char* src) const;
+		int				_convert(char* src) const;
 		double			_elapsedTime(std::clock_t start, std::clock_t end) const;
 
 		void			_sortVector(std::vector<int>& before, std::vector<int>& after);
 		void			_insertVector(std::vector<int>& container, int value);
+		std::vector<std::size_t>	_jacobsthalVectorOrder(std::size_t n) const;
 
 		void			_sortDeque(std::deque<int>& before, std::deque<int>& after);
 		void			_insertDeque(std::deque<int>& container, int value);
+		std::deque<std::size_t>	_jacobsthalDequeOrder(std::size_t n) const;
+
+		std::size_t		_jacobsthal(std::size_t n) const;
 
 		template <typename Container>
 		bool			_isSorted(const Container& src, double* elapsedTime);
@@ -43,6 +47,7 @@ class PmergeMe
 
 		void	info(void) const;
 };
+
 
 template <typename Container>
 bool	PmergeMe::_isSorted(const Container& src, double* elapsedTime)

@@ -1,12 +1,11 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(int size, char** argv) : _vectorElapsedTime(0), _dequeElapsedTime(0)
+PmergeMe::PmergeMe(int size, char** argv)
+	: _vectorElapsedTime(0), _dequeElapsedTime(0)
 {
-	int nbr;
-
 	for (int i = 1; i <= size; ++i)
 	{
-		nbr = _convert(argv[i]);
+		int nbr = _convert(argv[i]);
 		_vectorBefore.push_back(nbr);
 		_dequeBefore.push_back(nbr);
 	}
@@ -114,8 +113,9 @@ void	PmergeMe::_sortVector(std::vector<int>& before, std::vector<int>& after)
 	std::vector<int> sortedBigger;
 	_sortVector(bigger, sortedBigger);
 
-	for (std::size_t i = 0; i < smaller.size(); ++i)
-		_insertVector(sortedBigger, smaller[i]);
+	std::vector<std::size_t> order = _jacobsthalVectorOrder(smaller.size());
+	for (std::size_t i = 0; i < order.size(); ++i)
+		_insertVector(sortedBigger, smaller[order[i]]);
 
 	if (before.size() % 2 != 0)
 		_insertVector(sortedBigger, before.back());
@@ -170,8 +170,9 @@ void	PmergeMe::_sortDeque(std::deque<int>& before, std::deque<int>& after)
 	std::deque<int> sortedBigger;
 	_sortDeque(bigger, sortedBigger);
 
-	for (std::size_t i = 0; i < smaller.size(); ++i)
-		_insertDeque(sortedBigger, smaller[i]);
+	std::deque<std::size_t> order = _jacobsthalDequeOrder(smaller.size());
+	for (std::size_t i = 0; i < order.size(); ++i)
+		_insertDeque(sortedBigger, smaller[order[i]]);
 
 	if (before.size() % 2 != 0)
 		_insertDeque(sortedBigger, before.back());
@@ -193,4 +194,53 @@ void	PmergeMe::_insertDeque(std::deque<int>& container, int value)
 			ite = mid;
 	}
 	container.insert(it, value);
+}
+
+std::size_t PmergeMe::_jacobsthal(std::size_t n) const
+{
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+	return _jacobsthal(n - 1) + 2 * _jacobsthal(n - 2);
+}
+
+std::vector<std::size_t> PmergeMe::_jacobsthalVectorOrder(std::size_t n) const
+{
+	std::vector<std::size_t> order;
+	std::vector<bool> used(n, false);
+
+	for (std::size_t i = 1; ; ++i)
+	{
+		std::size_t j = _jacobsthal(i);
+		if (j >= n)
+			break;
+		order.push_back(j);
+		used[j] = true;
+	}
+	for (std::size_t i = 0; i < n; ++i)
+	{
+		if (!used[i])
+			order.push_back(i);
+	}
+	return order;
+}
+
+std::deque<std::size_t> PmergeMe::_jacobsthalDequeOrder(std::size_t n) const
+{
+	std::deque<std::size_t> order;
+	std::deque<bool> used(n, false);
+
+	for (std::size_t i = 1; ; ++i)
+	{
+		std::size_t j = _jacobsthal(i);
+		if (j >= n)
+			break;
+		order.push_back(j);
+		used[j] = true;
+	}
+	for (std::size_t i = 0; i < n; ++i)
+	{
+		if (!used[i])
+			order.push_back(i);
+	}
+	return order;
 }
