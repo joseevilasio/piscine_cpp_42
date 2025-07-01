@@ -44,7 +44,7 @@ bool	BitcoinExchange::_init_db(const std::string& db_path)
 			if (date == "date")
 				continue ;
 			_validateDate(date);
-			float f = _convertValue(value, "database");
+			float f = _convertValue(value, SOURCE_DATABASE);
 			_database.insert(std::pair<std::string, float>(date, f));
 		}
 		catch(const std::exception& e)
@@ -57,7 +57,7 @@ bool	BitcoinExchange::_init_db(const std::string& db_path)
 	return (true);
 }
 
-bool	BitcoinExchange::exchange(const std::string& input_path)
+void	BitcoinExchange::exchange(const std::string& input_path)
 {
 	std::ifstream input(input_path.c_str());
 
@@ -78,7 +78,7 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 			if (date == "date")
 				continue ;
 			_validateDate(date);
-			float f = _convertValue(value, "input");
+			float f = _convertValue(value, SOURCE_INPUT);
 			std::cout << date << " => " << f << " = "
 				<< f * _findValue(date) << std::endl;
 		}
@@ -88,7 +88,6 @@ bool	BitcoinExchange::exchange(const std::string& input_path)
 		}
 	}
 	input.close();
-	return (true);
 }
 
 int		BitcoinExchange::_convertDate(const std::string& value)
@@ -103,27 +102,9 @@ int		BitcoinExchange::_convertDate(const std::string& value)
 	return (i);
 }
 
-bool	BitcoinExchange::_validateDateValue(const std::string& value, const std::string& type)
-{
-	std::istringstream iss(value);
-	int i;
-	
-	if (!(iss >> i))
-		return (false);
-	if (!iss.eof())
-		return (false);
-	if (type == "year" && (i < 1000 || i > 3000))
-		return (false);
-	if (type == "month" && (i < 1 || i > 12))
-		return (false);
-	if (type == "day" && (i < 1 || i > 31))
-		return (false);
-	return (true);
-}
-
 bool	BitcoinExchange::_validateDate(const std::string& date)
 {
-	std::string	error = "Error: bad input => " + date;	
+	std::string	error = "Error: bad input => " + date;
 	int			daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
 	if (date.length() != 10 || (date.substr(4, 1) != "-" || date.substr(7, 1) != "-"))
@@ -145,7 +126,7 @@ bool	BitcoinExchange::_validateDate(const std::string& date)
 	return (true);
 }
 
-float	BitcoinExchange::_convertValue(const std::string& value, const std::string& type)
+float	BitcoinExchange::_convertValue(const std::string& value, SourceType type)
 {
 	errno = 0;
 	char* end;
@@ -156,7 +137,7 @@ float	BitcoinExchange::_convertValue(const std::string& value, const std::string
 		throw std::range_error("Error: not a valid numeric value.");
 	if (errno == ERANGE)
 		throw std::range_error("Error: too large a number.");
-	if (type == "input" && f > 1000)
+	if (type == SOURCE_INPUT && f > 1000)
 		throw std::range_error("Error: too large a number.");
 	if (f < 0)
 		throw std::range_error("Error: not a positive number.");
