@@ -10,7 +10,7 @@ class RPN
 		std::stack<int>		_numbers;
 		std::string			_expr;
 
-		int		_getTopNumbers(void);
+		int		_getTopNumber(void);
 		bool	_isOperator(const char& c) const;
 		int		_calculate(int left, int right, char op);
 

@@ -16,7 +16,7 @@ RPN& RPN::operator=(const RPN& rhs)
 	return (*this);
 }
 
-int	RPN::_getTopNumbers()
+int	RPN::_getTopNumber()
 {
 	int item = _numbers.top();
 	_numbers.pop();
@@ -46,8 +46,8 @@ void	RPN::execute(void)
 			if (_numbers.size() < 2)
 				throw std::invalid_argument("Error");
 			
-			int right = _getTopNumbers();
-			int left = _getTopNumbers();
+			int right = _getTopNumber();
+			int left = _getTopNumber();
 			int result = _calculate(left, right, *it);
 			_numbers.push(result);
 		}
@@ -58,22 +58,23 @@ void	RPN::execute(void)
 	if (_numbers.size() != 1)
 		throw std::invalid_argument("Error");
 
-	std::cout << _getTopNumbers() << std::endl;
+	std::cout << _getTopNumber() << std::endl;
 }
 
 int	RPN::_calculate(int left, int right, char op)
 {
 	if (op == '+')
 		return (left + right);
-	else if (op == '-')
+	if (op == '-')
 		return (left - right);
-	else if (op == '*')
+	if (op == '*')
 		return (left * right);
-	else
+	if (op == '/')
 	{
 		if (right == 0)
 			throw std::invalid_argument("Error: Division by zero");
 		else
 			return (left / right);
 	}
+	throw std::invalid_argument("Error: Unknown operator");
 }
